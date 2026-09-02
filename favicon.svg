@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <rect width="40" height="40" rx="9" fill="#0E1116"/>
+  <g transform="translate(20 20) scale(1.12) translate(-20 -20)">
+    <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
+    <circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+    <!-- lente = interseção real das duas circunferências (centro em x=20) -->
+    <path d="M20 10.2a11 11 0 0 1 0 19.6 11 11 0 0 1 0-19.6Z" fill="#F2A65A"/>
+  </g>
+</svg>

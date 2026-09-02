@@ -7,5 +7,5 @@ COPY Caddyfile /etc/caddy/Caddyfile
 # Falha o build já se o Caddyfile tiver erro de sintaxe.
 RUN caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 
-# Só os HTML entram na imagem — Dockerfile/Caddyfile/compose/DEPLOY.md ficam de fora.
-COPY *.html /srv/
+# Só o conteúdo entra na imagem — Dockerfile/Caddyfile/compose/DEPLOY.md ficam de fora.
+COPY *.html favicon.svg /srv/
