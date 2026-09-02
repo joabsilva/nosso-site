@@ -1,7 +1,7 @@
 {
-	# E-mail para os avisos de expiração de certificado do Let's Encrypt.
-	# TROQUE antes de subir:
-	email jobs.tecnologia.consultoria@gmail.com
+	# E-mail para os avisos de expiração de certificado do Let's Encrypt
+	# (encaminha pro Gmail via Cloudflare Email Routing).
+	email contato@appnosso.com
 
 	# Para TESTAR sem gastar o limite do Let's Encrypt, descomente a linha abaixo
 	# (emite certificado "de mentira"; o navegador vai reclamar — é esperado):
