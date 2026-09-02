@@ -1,17 +1,21 @@
 # Deploy do site (Docker + Caddy + Let's Encrypt)
 
-O site é estático (só HTML). O container roda o **Caddy**, que serve os arquivos
-e cuida sozinho do **HTTPS** — pede e renova o certificado no Let's Encrypt
-automaticamente, sem cron, sem certbot.
+O site é estático (HTML + `favicon.svg`). O container roda o **Caddy**, que serve
+os arquivos e cuida sozinho do **HTTPS** — pede e renova o certificado no Let's
+Encrypt automaticamente, sem cron, sem certbot.
 
-Arquivos desta pasta usados no deploy:
+Conteúdo: `index.html` (landing), 3 páginas de comparação e `privacidade.html`
+(a política de privacidade servida — a fonte legível em PT é `docs/privacy-policy.md`
+no repo do app).
+
+Arquivos de deploy:
 
 | Arquivo         | Pra que serve                                                        |
 |-----------------|---------------------------------------------------------------------|
-| `Dockerfile`    | monta a imagem: Caddy + os `.html`                                  |
+| `Dockerfile`    | monta a imagem: Caddy + os `.html` + `favicon.svg`                  |
 | `Caddyfile`     | config do Caddy (domínio, headers, e-mail do ACME)                  |
 | `compose.yaml`  | sobe o container, mapeia portas 80/443, guarda os certificados      |
-| `.dockerignore` | garante que só `Caddyfile` + `*.html` entrem na imagem              |
+| `.dockerignore` | garante que só `Caddyfile` + conteúdo entrem na imagem              |
 
 ---
 
