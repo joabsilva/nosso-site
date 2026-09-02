@@ -48,20 +48,22 @@ Arquivos desta pasta usados no deploy:
 
 ## 3. Subir
 
-Este projeto **não está em git**. Copie esta pasta pro servidor com `scp` ou
-`rsync`. Exemplo (rode da sua máquina, ajustando `SEU_SERVIDOR` = o que você usa
-no `ssh`):
+Esta pasta é um repositório git próprio. Coloque-a no servidor de um destes jeitos:
+
+**Via git** (depois de criar um repo remoto e rodar `git remote add origin <url>`
++ `git push -u origin main` aqui):
+
+```bash
+git clone <url-do-repo> /opt/site-appnosso
+cd /opt/site-appnosso && docker compose up -d --build
+```
+
+**Sem remote, via rsync/scp** (`SEU_SERVIDOR` = o que você usa no `ssh`):
 
 ```bash
 rsync -avz nosso/site/ root@SEU_SERVIDOR:/opt/site-appnosso/
 # ou:  scp -r nosso/site root@SEU_SERVIDOR:/opt/site-appnosso
-```
-
-No servidor:
-
-```bash
-cd /opt/site-appnosso
-docker compose up -d --build
+cd /opt/site-appnosso && docker compose up -d --build   # no servidor
 ```
 
 Na primeira vez o Caddy leva alguns segundos pedindo o certificado. Acompanhe:
@@ -97,16 +99,13 @@ Deve dizer `issuer= ... Let's Encrypt`.
 
 ## 5. Atualizar o conteúdo
 
-Editou algum `.html`? Reenvie os arquivos (mesmo `rsync`/`scp` do passo 3) e
-reconstrua no servidor:
+Editou algum `.html`? Commit + push aqui, e no servidor:
 
 ```bash
-# da sua máquina:
-rsync -avz nosso/site/ root@SEU_SERVIDOR:/opt/site-appnosso/
-
-# no servidor:
-cd /opt/site-appnosso && docker compose up -d --build
+cd /opt/site-appnosso && git pull && docker compose up -d --build
 ```
+
+Sem remote git, reenvie por `rsync`/`scp` (passo 3) e rode o `up -d --build`.
 
 O `--build` regera a imagem com os HTML novos e troca o container. Os
 **certificados não são afetados** (ficam no volume `caddy_data`, fora da imagem).
