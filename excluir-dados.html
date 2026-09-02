@@ -23,6 +23,7 @@
     --muted: #5b6572;
     --rule: #e4e7ec;
     --accent: #b7702a;
+    --on-accent: #fff;
     --card: #f7f8fa;
     --maxw: 44rem;
     --glow-a: rgba(183, 112, 42, .08);
@@ -35,6 +36,7 @@
       --muted: #9aa4b2;
       --rule: #262c36;
       --accent: #f2a65a;
+      --on-accent: #1a1206;
       --card: #171b22;
       --glow-a: rgba(242, 166, 90, .10);
       --glow-b: rgba(242, 166, 90, .12);
@@ -78,7 +80,7 @@
     cursor: pointer;
   }
   .langbar button[aria-pressed="true"] {
-    background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600;
+    background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600;
   }
   .topbar {
     display: flex; align-items: center; justify-content: space-between;
@@ -99,7 +101,7 @@
   .steps > li::before {
     content: counter(step); position: absolute; left: 0; top: .05rem;
     width: 1.5rem; height: 1.5rem; border-radius: 999px;
-    background: var(--accent); color: #fff; font-size: .85rem; font-weight: 700;
+    background: var(--accent); color: var(--on-accent); font-size: .85rem; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
   }
 
