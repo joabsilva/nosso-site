@@ -28,6 +28,7 @@
     --fg:#F2F4F7; --dim:#9AA4B2; --faint:#6B7480;
     --accent:#F2A65A; --accent-ink:#1A1206; --mint:#5FD6A6; --coral:#F2708A;
     --maxw:52rem;
+    --chrome:64rem; /* largura de topo/rodapé — igual em todas as páginas */
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
@@ -41,7 +42,7 @@
   .placeholder{color:var(--accent); font-weight:600}
 
   header{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
-  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--maxw); margin:0 auto}
+  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--chrome); margin:0 auto}
   .brand{display:flex; align-items:center; gap:.55rem; font-weight:700}
   .brand .mark{width:22px; height:22px; flex:0 0 auto}
   nav .spacer{flex:1}
@@ -93,7 +94,7 @@
   .cta .btn{margin:.3rem}
 
   footer{padding:2.5rem 0 3rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.85rem; margin-top:2rem}
-  footer .wrap{display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
+  footer .wrap{max-width:var(--chrome); display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
   footer a{color:var(--dim)}
   footer .disclaimer{flex-basis:100%; color:var(--faint); font-size:.78rem; margin-top:.5rem}
 

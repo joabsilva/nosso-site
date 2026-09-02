@@ -26,6 +26,7 @@
     --on-accent: #1a1206;
     --card: #171b22;
     --maxw: 44rem;
+    --chrome: 64rem; /* largura de topo/rodapé — igual em todas as páginas */
     --glow-a: rgba(242, 166, 90, .10);
     --glow-b: rgba(242, 166, 90, .12);
   }
@@ -65,7 +66,7 @@
   .site-header.scrolled { box-shadow: 0 12px 34px -14px rgba(0, 0, 0, .6); }
   .site-header-inner {
     display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-    max-width: var(--maxw); margin: 0 auto; padding: .85rem 1.25rem;
+    max-width: var(--chrome); margin: 0 auto; padding: .85rem 1.25rem;
   }
   .brand {
     display: inline-flex; align-items: center; gap: .55rem;
