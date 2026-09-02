@@ -20,40 +20,27 @@
 <title>Política de Privacidade — Nosso</title>
 <style>
   :root {
-    --bg: #ffffff;
-    --fg: #1c2129;
-    --muted: #5b6572;
-    --rule: #e4e7ec;
-    --accent: #b7702a;
-    --on-accent: #fff;
-    --card: #f7f8fa;
+    --bg: #0e1116;
+    --fg: #eceef2;
+    --muted: #9aa4b2;
+    --rule: #262c36;
+    --accent: #f2a65a;
+    --on-accent: #1a1206;
+    --card: #171b22;
     --maxw: 44rem;
-    --glow-a: rgba(183, 112, 42, .08);
-    --glow-b: rgba(183, 112, 42, .10);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0e1116;
-      --fg: #eceef2;
-      --muted: #9aa4b2;
-      --rule: #262c36;
-      --accent: #f2a65a;
-      --on-accent: #1a1206;
-      --card: #171b22;
-      --glow-a: rgba(242, 166, 90, .10);
-      --glow-b: rgba(242, 166, 90, .12);
-    }
+    --glow-a: rgba(242, 166, 90, .10);
+    --glow-b: rgba(242, 166, 90, .12);
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--fg);
     font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    padding: 2.5rem 1.25rem 4rem;
+    -webkit-font-smoothing: antialiased;
   }
-  main { max-width: var(--maxw); margin: 0 auto; }
+  main { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
   h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 .25rem; }
   h2 { font-size: 1.15rem; margin: 2.2rem 0 .6rem; padding-top: .4rem; }
   h3 { font-size: 1rem; margin: 1.4rem 0 .4rem; }
@@ -72,30 +59,50 @@
   }
   .summary p { margin: .4rem 0; }
   hr { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
-  .langbar {
-    display: flex; gap: .5rem; margin: 0 0 1.75rem;
+  .site-header {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(14, 17, 22, .85); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule); transition: box-shadow .3s ease;
   }
+  .site-header.scrolled { box-shadow: 0 12px 34px -14px rgba(0, 0, 0, .6); }
+  .site-header-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    max-width: var(--maxw); margin: 0 auto; padding: .85rem 1.25rem;
+  }
+  .brand {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-weight: 700; color: var(--fg); text-decoration: none;
+  }
+  .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
+  .langbar { display: flex; gap: .35rem; }
   .langbar button {
-    font: inherit; font-size: .85rem;
-    padding: .3rem .8rem; border-radius: 999px;
+    font: inherit; font-size: .8rem;
+    padding: .25rem .6rem; border-radius: 999px;
     border: 1px solid var(--rule); background: transparent; color: var(--muted);
     cursor: pointer;
   }
   .langbar button[aria-pressed="true"] {
     background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 600;
   }
-  .topbar {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 1rem; flex-wrap: wrap; margin: 0 0 1.75rem;
-  }
-  .topbar .langbar { margin: 0; }
-  .brand {
-    display: inline-flex; align-items: center; gap: .5rem;
-    font-weight: 700; color: var(--fg); text-decoration: none;
-  }
-  .brand .mark { width: 22px; height: 22px; flex: 0 0 auto; }
   .placeholder { color: var(--accent); font-weight: 600; }
   footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+  .home-link { margin: 2.75rem 0 0; }
+  .home-link a { font-weight: 600; }
+
+  .to-top {
+    position: fixed; right: 1rem; bottom: 1rem; z-index: 30;
+    width: 2.75rem; height: 2.75rem; border-radius: 999px;
+    display: grid; place-items: center;
+    background: var(--card); color: var(--fg);
+    border: 1px solid var(--rule); cursor: pointer;
+    box-shadow: 0 10px 28px -10px rgba(0, 0, 0, .55);
+    transition: opacity .25s ease, transform .18s ease,
+                background-color .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .to-top:hover {
+    background: var(--accent); color: var(--on-accent);
+    border-color: var(--accent); transform: translateY(-2px);
+  }
 
   /* ---------- motion & vida ---------- */
   .langbar button, a { transition: background-color .2s ease, border-color .2s ease, color .15s ease; }
@@ -129,16 +136,18 @@
 
   [hidden] { display: none !important; }
   @media print {
-    .langbar, .cursor-glow { display: none; }
-    body { padding: 0; color: #000; }
+    :root { --bg: #fff; --fg: #000; --muted: #333; --rule: #ccc; --card: #fff; }
+    .site-header, .cursor-glow, .to-top, .home-link { display: none; }
+    body { color: #000; background: #fff; }
+    main { padding: 0; }
     a { color: #000; text-decoration: underline; }
     .reveal { opacity: 1 !important; transform: none !important; }
   }
 </style>
 </head>
 <body>
-<main>
-  <div class="topbar">
+<header class="site-header">
+  <div class="site-header-inner">
     <a class="brand" href="./index.html">
       <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
         <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
@@ -148,10 +157,12 @@
       Nosso
     </a>
     <div class="langbar" role="group" aria-label="Idioma / Language">
-      <button type="button" data-lang="pt" aria-pressed="true">Português</button>
-      <button type="button" data-lang="en" aria-pressed="false">English</button>
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
   </div>
+</header>
+<main>
 
   <!-- ============================ PORTUGUÊS ============================ -->
   <section class="lang-pt">
@@ -307,6 +318,8 @@
     <p>Esta política é regida pela lei brasileira. Fica eleito o foro da comarca de
       São Paulo/SP para dirimir questões dela decorrentes,
       sem prejuízo de direitos assegurados ao consumidor pela legislação aplicável.</p>
+
+    <p class="home-link"><a href="./index.html">← Voltar para a página inicial</a></p>
 
     <footer>
       Página publicada em https://appnosso.com/privacidade.html.
@@ -465,17 +478,28 @@
       São Paulo/SP as the venue, without prejudice to
       consumer rights under applicable law.</p>
 
+    <p class="home-link"><a href="./index.html">← Back to the home page</a></p>
+
     <footer>
       Page published at https://appnosso.com/privacidade.html.
     </footer>
   </section>
 </main>
 
+<button type="button" class="to-top" aria-label="Voltar ao topo" hidden>
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none"
+       stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
 <script>
   (function () {
     var buttons = document.querySelectorAll('.langbar button');
     var pt = document.querySelector('.lang-pt');
     var en = document.querySelector('.lang-en');
+
+    var toTop = document.querySelector('.to-top');
 
     function apply(lang) {
       var isEn = lang === 'en';
@@ -486,7 +510,8 @@
       buttons.forEach(function (b) {
         b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
       });
-      try { localStorage.setItem('nosso-privacy-lang', lang); } catch (e) {}
+      if (toTop) toTop.setAttribute('aria-label', isEn ? 'Back to top' : 'Voltar ao topo');
+      try { localStorage.setItem('nosso-lang', lang); } catch (e) {}
     }
 
     var initial = 'pt';
@@ -494,7 +519,7 @@
       var q = new URLSearchParams(location.search).get('lang');
       if (q === 'en' || q === 'pt') initial = q;
       else {
-        var saved = localStorage.getItem('nosso-privacy-lang');
+        var saved = localStorage.getItem('nosso-lang');
         if (saved === 'en' || saved === 'pt') initial = saved;
       }
     } catch (e) {}
@@ -507,9 +532,25 @@
 </script>
 
 <script>
-/* motion: entradas ao rolar + holofote seguindo o cursor */
+/* motion: sombra na nav ao rolar, botão "voltar ao topo", entradas ao rolar, holofote */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var header = document.querySelector('.site-header');
+  var toTop = document.querySelector('.to-top');
+  var onScrollUI = function () {
+    var y = window.scrollY;
+    if (header) header.classList.toggle('scrolled', y > 8);
+    if (toTop) toTop.hidden = y < 500;
+  };
+  onScrollUI();
+  window.addEventListener('scroll', onScrollUI, { passive: true });
+  if (toTop) {
+    toTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+    });
+  }
+
   if (reduce.matches) return;
 
   var sel = 'main h1, main .updated, .summary, main h2, main h3, main footer';
