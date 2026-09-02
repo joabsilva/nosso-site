@@ -1,0 +1,4 @@
+# Só o Caddyfile e os HTML vão pro build context.
+*
+!Caddyfile
+!*.html

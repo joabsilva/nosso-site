@@ -1,0 +1,488 @@
+<!doctype html>
+<!--
+  Página de comparação "Alternativa ao Monarch para casais" — estática, para site/.
+
+  Botões de download -> https://appnosso.com (troque pelos links reais das lojas quando existirem).
+  privacidade -> ./privacidade.html · contato -> jobs.tecnologia.consultoria@gmail.com
+
+  Comparação honesta: inclui os pontos fortes do Monarch (investimentos, patrimônio líquido,
+  polimento) e o que o Nosso não tem. Dados sobre o Monarch são fatos verificáveis ou relatos
+  atribuídos (Trustpilot / imprensa 2025-2026) e podem mudar.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<title>Alternativa ao Monarch Money para casais — comparação</title>
+<meta name="description" content="Monarch é o app pago mais recomendado para casais, mas custa US$ 100/ano e as reclamações se repetem. Comparação honesta entre Nosso e Monarch.">
+<meta property="og:title" content="Alternativa ao Monarch para casais">
+<meta property="og:description" content="Comparação honesta entre Nosso e Monarch Money.">
+<meta property="og:type" content="article">
+<style>
+  :root{
+    --bg:#0E1116; --surface:#171B22; --surface-2:#1F242D; --rule:#2A313C;
+    --fg:#F2F4F7; --dim:#9AA4B2; --faint:#6B7480;
+    --accent:#F2A65A; --accent-ink:#1A1206; --mint:#5FD6A6; --coral:#F2708A;
+    --maxw:52rem;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{line-height:1.22; margin:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 1.25rem}
+  .placeholder{color:var(--accent); font-weight:600}
+
+  header{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
+  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--maxw); margin:0 auto}
+  .brand{display:flex; align-items:center; gap:.55rem; font-weight:700}
+  .brand .mark{width:22px; height:22px; flex:0 0 auto}
+  nav .spacer{flex:1}
+  .langbar{display:flex; gap:.35rem}
+  .langbar button{font:inherit; font-size:.8rem; padding:.25rem .6rem; border-radius:999px;
+    border:1px solid var(--rule); background:transparent; color:var(--dim); cursor:pointer}
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .btn{display:inline-flex; align-items:center; gap:.5rem; justify-content:center;
+    padding:.55rem .95rem; border-radius:11px; font-weight:600; font-size:.9rem;
+    border:1px solid var(--rule); color:var(--fg); background:var(--surface-2)}
+  .btn.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+  .btn.small{padding:.4rem .8rem; font-size:.82rem}
+
+  main{padding:2.5rem 0 1rem}
+  .kicker{color:var(--faint); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.5rem}
+  h1{font-size:2rem; letter-spacing:-.01em}
+  .updated{color:var(--faint); font-size:.85rem; margin-top:.5rem}
+  .lead{font-size:1.1rem; color:var(--dim); margin:1.25rem 0}
+  .tldr{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.15rem 1.25rem; margin:1.5rem 0 2.25rem}
+  .tldr strong{color:var(--fg)}
+
+  section{padding:2rem 0; border-top:1px solid var(--rule); margin-top:1.5rem}
+  section h2{font-size:1.35rem; margin-bottom:.9rem}
+  p{margin:.7rem 0}
+  ul{margin:.7rem 0; padding-left:1.2rem}
+  li{margin:.35rem 0}
+
+  .cmp{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem}
+  .cmp th,.cmp td{text-align:left; padding:.7rem .6rem; border-bottom:1px solid var(--rule); vertical-align:top}
+  .cmp thead th{color:var(--dim); font-weight:600; font-size:.82rem; text-transform:uppercase; letter-spacing:.04em}
+  .cmp tbody th{font-weight:600; width:34%}
+  .cmp td.nosso{color:var(--fg)}
+  .cmp td.hd{color:var(--dim)}
+  .yes{color:var(--mint); font-weight:700}
+  .no{color:var(--coral); font-weight:700}
+  .tilde{color:var(--faint)}
+  .cmp-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+  .two .col{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.1rem}
+  .two .col h3{font-size:1rem; margin-bottom:.5rem}
+  .two .col.honey h3{color:var(--dim)}
+  .two .col ul{padding-left:1.05rem; color:var(--dim)}
+
+  .quote{border-left:2px solid var(--rule); padding:.2rem 0 .2rem 1rem; margin:.9rem 0; color:var(--dim); font-style:italic}
+  .quote cite{display:block; font-style:normal; font-size:.8rem; color:var(--faint); margin-top:.3rem}
+
+  .cta{background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:1.5rem; text-align:center; margin-top:2rem}
+  .cta .btn{margin:.3rem}
+
+  footer{padding:2.5rem 0 3rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.85rem; margin-top:2rem}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
+  footer a{color:var(--dim)}
+  footer .disclaimer{flex-basis:100%; color:var(--faint); font-size:.78rem; margin-top:.5rem}
+
+  /* ---------- motion & vida ---------- */
+  .btn,.langbar button,.two .col{
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), background-color .2s ease,
+               border-color .2s ease, box-shadow .25s ease, color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.985)}
+  .btn.primary:hover{box-shadow:0 12px 30px -10px rgba(242,166,90,.55)}
+  .langbar button:hover{color:var(--fg); border-color:var(--faint)}
+  .two .col:hover{transform:translateY(-3px); border-color:#3a4350}
+  .cmp tbody tr{transition:background-color .18s ease}
+  .cmp tbody tr:hover{background:rgba(242,166,90,.045)}
+
+  header{transition:box-shadow .3s ease, background-color .3s ease}
+  header.scrolled{box-shadow:0 12px 34px -14px rgba(0,0,0,.6)}
+
+  /* holofote: uma luz âmbar acompanha o cursor pela página inteira (sensação de relevo) */
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+    .cursor-glow{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      opacity:0; transition:opacity .5s ease;
+      background:radial-gradient(600px circle at var(--gx,50%) var(--gy,-20%),
+        rgba(242,166,90,.12), transparent 60%);
+    }
+    body.cursor-active .cursor-glow{opacity:1}
+
+    /* foco mais forte no painel sob o cursor */
+    .two .col{position:relative}
+    .two .col h3,.two .col ul{position:relative; z-index:1}
+    .two .col::after{
+      content:""; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit;
+      background:radial-gradient(200px circle at var(--mx,-300px) var(--my,-300px),
+        rgba(242,166,90,.12), transparent 60%);
+      opacity:0; transition:opacity .4s ease;
+    }
+    .two .col:hover::after{opacity:1}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    /* entradas ao rolar (classe adicionada via JS: sem JS, nada some) */
+    .reveal{opacity:0; transform:translateY(22px);
+      transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+  }
+
+  [hidden]{display:none !important}
+  @media (max-width:640px){ h1{font-size:1.6rem} .two{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="./index.html">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </a>
+    <span class="spacer"></span>
+    <div class="langbar" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn small primary" href="#baixar" data-i18n="nav.cta">Baixar</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <p class="kicker" data-i18n="kicker">Comparação</p>
+  <h1 data-i18n="h1">Alternativa ao Monarch para casais</h1>
+  <p class="updated" data-i18n="updated">Comparação honesta, atualizada em <span class="placeholder">setembro de 2026</span>.</p>
+
+  <p class="lead" data-i18n="lead">
+    O <strong>Monarch Money</strong> é o app pago mais recomendado para casais depois do fim do
+    Mint — polido, completo, com investimentos e patrimônio líquido. Também custa cerca de
+    <strong>US$ 100/ano</strong>, e as reclamações se repetem: conexão bancária que cai,
+    transações duplicadas e cobrança difícil de cancelar. Se você só quer a parte de
+    <strong>dividir os gastos do casal</strong>, dá pra ter isso mais simples e de graça.
+  </p>
+
+  <div class="tldr" data-i18n="tldr">
+    <strong>Resumo:</strong> fique no <strong>Monarch</strong> se você quer um app tudo-em-um
+    (orçamento + investimentos + patrimônio líquido + web) e sua conexão bancária funciona bem.
+    Troque pelo <strong>Nosso</strong> se o que você usa de verdade é só o "quem deve a quem"
+    do casal, você está cansado de reconectar banco, e US$ 100/ano é dinheiro demais pra isso.
+  </div>
+
+  <section>
+    <h2 data-i18n="table.h2">Lado a lado</h2>
+    <div class="cmp-scroll">
+      <table class="cmp">
+        <thead>
+          <tr><th data-i18n="table.col0">&nbsp;</th><th>Nosso</th><th>Monarch</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Preço</th>
+            <td class="nosso" data-i18n="r.price.n">Grátis (planos pagos opcionais no futuro; lançar gasto e ver o histórico serão sempre grátis)</td>
+            <td class="hd" data-i18n="r.price.h">~US$ 99,99/ano ou US$ 14,99/mês; trial de 7 dias; existe um tier de ~US$ 199/ano</td></tr>
+          <tr><th>Conexão bancária</th>
+            <td class="nosso" data-i18n="r.bank.n"><span class="no">Não</span> — você lança na mão ou compartilha o valor de outro app</td>
+            <td class="hd" data-i18n="r.bank.h"><span class="yes">Sim</span> — importa transações do banco</td></tr>
+          <tr><th>Importação automática de transações</th>
+            <td class="nosso"><span class="no">Não</span></td>
+            <td class="hd" data-i18n="r.import.h"><span class="yes">Sim</span> (quando a conexão está funcionando)</td></tr>
+          <tr><th>Investimentos / patrimônio líquido</th>
+            <td class="nosso"><span class="no">Não</span></td>
+            <td class="hd"><span class="yes">Sim</span></td></tr>
+          <tr><th>"Quem deve a quem" + acerto de contas</th>
+            <td class="nosso"><span class="yes">Sim</span> — é o centro do app</td>
+            <td class="hd" data-i18n="r.owes.h"><span class="tilde">Parcial</span> — tem divisão "meu/seu/nosso" (adicionada em 2026), mas o foco é o orçamento, não o acerto entre duas pessoas</td></tr>
+          <tr><th>Rateio em valores exatos</th>
+            <td class="nosso" data-i18n="r.split.n"><span class="yes">Sim</span> — "eu pago R$ 40, você o resto"</td>
+            <td class="hd"><span class="no">Não</span></td></tr>
+          <tr><th>Contas fixas (recorrentes)</th>
+            <td class="nosso"><span class="yes">Sim</span></td>
+            <td class="hd"><span class="yes">Sim</span></td></tr>
+          <tr><th>Compras parceladas (3/12, saldo a pagar)</th>
+            <td class="nosso"><span class="yes">Sim</span></td>
+            <td class="hd"><span class="no">Não</span></td></tr>
+          <tr><th>Onboarding do casal</th>
+            <td class="nosso" data-i18n="r.onb.n">Código de 6 letras — o segundo parceiro entra sem criar conta</td>
+            <td class="hd" data-i18n="r.onb.h">Cada um cria conta; 2 parceiros na mesma assinatura</td></tr>
+          <tr><th>Suporte</th>
+            <td class="nosso" data-i18n="r.sup.n">E-mail direto com quem faz o app</td>
+            <td class="hd" data-i18n="r.sup.h">Usuários relatam espera de 24h+ e ausência de canal ao vivo</td></tr>
+          <tr><th>Cancelar é fácil</th>
+            <td class="nosso" data-i18n="r.cancel.n">Nada pra cancelar (grátis); quando houver plano pago, cancelamento no 1º nível do menu</td>
+            <td class="hd" data-i18n="r.cancel.h">Reviews relatam dificuldade e cobrança após pedido de cancelamento</td></tr>
+          <tr><th>Idiomas</th>
+            <td class="nosso">Português, inglês, espanhol</td>
+            <td class="hd" data-i18n="r.lang.h">Inglês; foco em bancos dos EUA</td></tr>
+          <tr><th>App web</th>
+            <td class="nosso"><span class="no">Não</span> — só mobile</td>
+            <td class="hd"><span class="yes">Sim</span></td></tr>
+          <tr><th>Nota nas lojas</th>
+            <td class="nosso" data-i18n="r.rating.n">Novo — poucas avaliações ainda</td>
+            <td class="hd" data-i18n="r.rating.h">~4,9 iOS / ~4,7 Google Play</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="when.h2">Quando cada um é a escolha certa</h2>
+    <div class="two">
+      <div class="col honey">
+        <h3 data-i18n="when.h.h">Fique no Monarch se…</h3>
+        <ul>
+          <li data-i18n="when.h.1">Você quer um painel único com orçamento, investimentos e patrimônio líquido.</li>
+          <li data-i18n="when.h.2">Sua conexão bancária funciona bem e você quer as transações entrando sozinhas.</li>
+          <li data-i18n="when.h.3">Você usa bancos dos EUA e quer acesso pelo navegador também.</li>
+          <li data-i18n="when.h.4">US$ 100/ano não é problema pelo conjunto de recursos.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 data-i18n="when.n.h">Troque pelo Nosso se…</h3>
+        <ul>
+          <li data-i18n="when.n.1">O que você abre o Monarch pra ver é só "quanto gastamos este mês" e "quem deve a quem".</li>
+          <li data-i18n="when.n.2">Você já reconectou o banco mais vezes do que gostaria.</li>
+          <li data-i18n="when.n.3">Não quer pagar US$ 100/ano por algo que um app grátis resolve.</li>
+          <li data-i18n="when.n.4">Quer contas fixas <em>e</em> compras parceladas, e a interface em português.</li>
+          <li data-i18n="when.n.5">Quer poder cancelar (quando houver o quê) em dois toques.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="cmp2.h2">O que os usuários reclamam do Monarch</h2>
+    <p data-i18n="cmp2.p">Segundo avaliações no Trustpilot e na App Store em 2025–2026, as queixas mais repetidas são:</p>
+    <ul>
+      <li data-i18n="cmp2.l1"><strong>Conexão bancária que cai</strong> — usuários relatam ter que reconectar contas a cada poucas semanas.</li>
+      <li data-i18n="cmp2.l2"><strong>Transações duplicadas</strong> — e relatos de que o suporte responde que isso é "comportamento esperado".</li>
+      <li data-i18n="cmp2.l3"><strong>Cobrança e cancelamento</strong> — várias reviews usam a palavra "scam"; relatos de cobrança mesmo após pedir cancelamento por escrito.</li>
+      <li data-i18n="cmp2.l4"><strong>Suporte lento</strong> — só e-mail, com espera de 24h ou mais.</li>
+      <li data-i18n="cmp2.l5"><strong>Preço subindo</strong> — dois aumentos e o lançamento de um tier mais caro.</li>
+    </ul>
+    <p data-i18n="cmp2.p2">As duas primeiras o Nosso evita por não depender de conexão bancária. A terceira e a quarta são escolhas de produto: o cancelamento fica visível e o suporte é você falando direto com quem faz o app.</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="honest.h2">O que o Nosso NÃO faz e o Monarch faz</h2>
+    <p data-i18n="honest.p">Comparação honesta nos dois sentidos. O Monarch é um app maduro e completo; o Nosso é pequeno e focado.</p>
+    <ul>
+      <li data-i18n="honest.l1"><strong>Investimentos e patrimônio líquido.</strong> O Nosso é só sobre os gastos compartilhados do casal — não acompanha carteira nem rende relatório de patrimônio.</li>
+      <li data-i18n="honest.l2"><strong>Importação automática do banco.</strong> Se você não quer lançar nada na mão, o Monarch faz isso e o Nosso não.</li>
+      <li data-i18n="honest.l3"><strong>App web.</strong> O Monarch tem; o Nosso é só mobile.</li>
+      <li data-i18n="honest.l4"><strong>Múltiplas moedas.</strong> O Nosso trabalha em real (BRL).</li>
+      <li data-i18n="honest.l5"><strong>Anos de polimento e uma base grande.</strong> O Nosso é novo, e no iPhone o acesso hoje é por TestFlight.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 data-i18n="mig.h2">Vindo do Monarch?</h2>
+    <ol>
+      <li data-i18n="mig.l1"><strong>Cancele a assinatura alguns dias antes da renovação</strong> — pela loja (App Store / Google Play) ou nas configurações do Monarch. Confira o e-mail de confirmação.</li>
+      <li data-i18n="mig.l2"><strong>Exporte seus dados do Monarch</strong> enquanto ainda tem acesso.</li>
+      <li data-i18n="mig.l3"><strong>No Nosso, crie o espaço do casal</strong> e comece do mês corrente. Como o Nosso é sobre "daqui pra frente", recomeçar costuma ser rápido — anote só o saldo atual entre vocês, se houver.</li>
+    </ol>
+  </section>
+
+  <div class="cta" id="baixar">
+    <h2 data-i18n="cta.h" style="border:none; padding:0; margin-bottom:.4rem">Experimente o Nosso</h2>
+    <p data-i18n="cta.p" style="color:var(--dim); margin-top:0">Grátis. Dois minutos pra configurar. Nenhum banco, nenhum cartão.</p>
+    <a class="btn primary" href="https://appnosso.com">App Store</a>
+    <a class="btn" href="https://appnosso.com">Google Play</a>
+    <p style="margin-top:.8rem">
+      <a href="./vs-honeydue.html" data-i18n="cta.l1">Nosso vs Honeydue</a> ·
+      <a href="./sem-conectar-banco.html" data-i18n="cta.l2">Apps sem conectar banco</a> ·
+      <a href="./index.html" data-i18n="cta.back">Página inicial</a>
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </span>
+    <span class="spacer" style="flex:1"></span>
+    <a href="./privacidade.html" data-i18n="foot.privacy">Política de privacidade</a>
+    <a href="mailto:jobs.tecnologia.consultoria@gmail.com" data-i18n="foot.contact">Contato</a>
+    <p class="disclaimer" data-i18n="foot.disc">"Monarch" e "Monarch Money" são marcas de seus respectivos donos e não têm vínculo com o Nosso. As informações vêm de fontes públicas (lojas de apps, imprensa, avaliações de usuários no Trustpilot) e podem mudar. Corrija-nos por <a href="mailto:jobs.tecnologia.consultoria@gmail.com">e-mail</a> se algo estiver desatualizado.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EN = {
+    "nav.cta":"Get the app",
+    "kicker":"Comparison",
+    "h1":"A Monarch alternative for couples",
+    "updated":"Honest comparison, updated <span class=\"placeholder\">September 2026</span>.",
+    "lead":"<strong>Monarch Money</strong> is the most recommended paid app for couples after Mint shut down — polished, complete, with investments and net worth. It also costs about <strong>US$ 100/year</strong>, and the complaints repeat: bank connection that drops, duplicate transactions, and billing that's hard to cancel. If all you want is the <strong>splitting-the-couple's-expenses</strong> part, you can have that simpler and free.",
+    "tldr":"<strong>Summary:</strong> stay on <strong>Monarch</strong> if you want an all-in-one app (budget + investments + net worth + web) and your bank connection works well. Switch to <strong>Nosso</strong> if what you actually use is just the couple's \"who owes whom\", you're tired of reconnecting your bank, and US$ 100/year is too much for that.",
+    "table.h2":"Side by side","table.col0":"&nbsp;",
+    "r.price.n":"Free (optional paid plans later; logging an expense and viewing history will always be free)",
+    "r.price.h":"~US$ 99.99/year or US$ 14.99/month; 7-day trial; there is a ~US$ 199/year tier",
+    "r.bank.n":"<span class=\"no\">No</span> — you log manually or share an amount from another app",
+    "r.bank.h":"<span class=\"yes\">Yes</span> — imports bank transactions",
+    "r.import.h":"<span class=\"yes\">Yes</span> (when the connection is working)",
+    "r.owes.h":"<span class=\"tilde\">Partial</span> — has a \"mine/yours/ours\" split (added in 2026), but the focus is budgeting, not settling up between two people",
+    "r.split.n":"<span class=\"yes\">Yes</span> — \"I pay R$ 40, you the rest\"",
+    "r.onb.n":"6-letter code — the second partner joins without creating an account",
+    "r.onb.h":"Each person creates an account; 2 partners on one subscription",
+    "r.sup.n":"Direct email with the person who makes the app",
+    "r.sup.h":"Users report 24h+ waits and no live channel",
+    "r.cancel.n":"Nothing to cancel (free); when there is a paid plan, cancellation is at the top level of the menu",
+    "r.cancel.h":"Reviews report difficulty and being charged after asking to cancel",
+    "r.lang.h":"English; US-bank focused",
+    "r.rating.n":"New — few ratings yet",
+    "r.rating.h":"~4.9 iOS / ~4.7 Google Play",
+    "when.h2":"When each one is the right pick",
+    "when.h.h":"Stay on Monarch if…",
+    "when.h.1":"You want a single dashboard with budget, investments and net worth.",
+    "when.h.2":"Your bank connection works well and you want transactions to flow in by themselves.",
+    "when.h.3":"You use US banks and want browser access too.",
+    "when.h.4":"US$ 100/year is fine for the feature set.",
+    "when.n.h":"Switch to Nosso if…",
+    "when.n.1":"What you open Monarch to see is only \"how much we spent this month\" and \"who owes whom\".",
+    "when.n.2":"You've reconnected your bank more times than you'd like.",
+    "when.n.3":"You don't want to pay US$ 100/year for something a free app handles.",
+    "when.n.4":"You want recurring bills <em>and</em> installment purchases, and the interface in Portuguese.",
+    "when.n.5":"You want to be able to cancel (when there's anything to) in two taps.",
+    "cmp2.h2":"What users complain about in Monarch",
+    "cmp2.p":"According to reviews on Trustpilot and the App Store in 2025–2026, the most repeated complaints are:",
+    "cmp2.l1":"<strong>Bank connection that drops</strong> — users report having to reconnect accounts every few weeks.",
+    "cmp2.l2":"<strong>Duplicate transactions</strong> — and reports that support replies this is \"expected behaviour\".",
+    "cmp2.l3":"<strong>Billing and cancellation</strong> — several reviews use the word \"scam\"; reports of being charged even after asking to cancel in writing.",
+    "cmp2.l4":"<strong>Slow support</strong> — email only, with 24h+ waits.",
+    "cmp2.l5":"<strong>Rising price</strong> — two hikes and the launch of a pricier tier.",
+    "cmp2.p2":"Nosso avoids the first two by not relying on a bank connection. The third and fourth are product choices: cancellation stays visible and support is you talking directly to the person who makes the app.",
+    "honest.h2":"What Nosso does NOT do that Monarch does",
+    "honest.p":"Honest comparison both ways. Monarch is a mature, complete app; Nosso is small and focused.",
+    "honest.l1":"<strong>Investments and net worth.</strong> Nosso is only about the couple's shared expenses — it doesn't track a portfolio or produce a net-worth report.",
+    "honest.l2":"<strong>Automatic bank import.</strong> If you don't want to log anything by hand, Monarch does that and Nosso doesn't.",
+    "honest.l3":"<strong>Web app.</strong> Monarch has one; Nosso is mobile only.",
+    "honest.l4":"<strong>Multiple currencies.</strong> Nosso works in Brazilian real (BRL).",
+    "honest.l5":"<strong>Years of polish and a large base.</strong> Nosso is new, and on iPhone access today is via TestFlight.",
+    "mig.h2":"Coming from Monarch?",
+    "mig.l1":"<strong>Cancel the subscription a few days before renewal</strong> — through the store (App Store / Google Play) or Monarch settings. Check for the confirmation email.",
+    "mig.l2":"<strong>Export your data from Monarch</strong> while you still have access.",
+    "mig.l3":"<strong>In Nosso, create the couple's space</strong> and start from the current month. Since Nosso is about \"going forward\", starting fresh is usually quick — just note the current balance between you two, if any.",
+    "cta.h":"Try Nosso",
+    "cta.p":"Free. Two minutes to set up. No bank, no card.",
+    "cta.l1":"Nosso vs Honeydue","cta.l2":"Apps without a bank connection","cta.back":"Home",
+    "foot.privacy":"Privacy policy","foot.contact":"Contact",
+    "foot.disc":"\"Monarch\" and \"Monarch Money\" are trademarks of their respective owners and have no affiliation with Nosso. Information comes from public sources (app stores, press, user reviews on Trustpilot) and may change. Correct us by <a href=\"mailto:jobs.tecnologia.consultoria@gmail.com\">email</a> if something is out of date."
+  };
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var PT = {}; nodes.forEach(function(n){ PT[n.dataset.i18n] = n.innerHTML; });
+  var buttons = document.querySelectorAll('.langbar button');
+  function apply(lang){
+    var d = lang === 'en' ? EN : PT;
+    nodes.forEach(function(n){ var v = d[n.dataset.i18n]; if (v != null) n.innerHTML = v; });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = lang === 'en'
+      ? "A Monarch Money alternative for couples — comparison"
+      : "Alternativa ao Monarch Money para casais — comparação";
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('nosso-lang', lang); } catch(e){}
+  }
+  var initial = 'pt';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'pt') initial = q;
+    else { var s = localStorage.getItem('nosso-lang');
+      if (s === 'en' || s === 'pt') initial = s;
+      else if ((navigator.language||'').toLowerCase().indexOf('pt') !== 0) initial = 'en'; }
+  } catch(e){}
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
+  if (initial === 'en') apply('en');
+})();
+</script>
+
+<script>
+/* motion: sombra na nav ao rolar, entradas ao aparecer, holofote seguindo o cursor */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var header = document.querySelector('header');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  if (reduce.matches || !('IntersectionObserver' in window)) return;
+
+  var sel = '.kicker, h1, .updated, .lead, .tldr, section h2, section p, section ul, section ol, '
+          + '.two .col, .cmp-scroll, .cta';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+  targets.forEach(function(el){
+    el.classList.add('reveal');
+    var sibs = el.parentElement
+      ? [].slice.call(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); })
+      : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 0.06, 0.3) + 's';
+  });
+
+  var sweep = function(){
+    var remaining = 0;
+    targets.forEach(function(el){
+      if (el.classList.contains('in')) return;
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('in');
+      else remaining++;
+    });
+    if (!remaining) window.removeEventListener('scroll', sweep);
+  };
+  window.addEventListener('scroll', sweep, {passive:true});
+  sweep();
+
+  /* holofote: luz âmbar seguindo o cursor pela página + foco no painel sob ele */
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    var spots = [].slice.call(document.querySelectorAll('.two .col'));
+    var queued = false, cx = 0, cy = 0, hovNode = null;
+    var paint = function(){
+      queued = false;
+      document.body.style.setProperty('--gx', cx + 'px');
+      document.body.style.setProperty('--gy', cy + 'px');
+      if (hovNode){
+        var r = hovNode.getBoundingClientRect();
+        hovNode.style.setProperty('--mx', (cx - r.left) + 'px');
+        hovNode.style.setProperty('--my', (cy - r.top) + 'px');
+      }
+    };
+    window.addEventListener('pointermove', function(e){
+      cx = e.clientX; cy = e.clientY;
+      document.body.classList.add('cursor-active');
+      if (!queued){ queued = true; requestAnimationFrame(paint); }
+    }, {passive:true});
+    document.documentElement.addEventListener('mouseleave', function(){
+      document.body.classList.remove('cursor-active');
+    });
+    spots.forEach(function(el){
+      el.addEventListener('pointerenter', function(){ hovNode = el; });
+      el.addEventListener('pointerleave', function(){ if (hovNode === el) hovNode = null; });
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{
+	# E-mail para os avisos de expiração de certificado do Let's Encrypt.
+	# TROQUE antes de subir:
+	email jobs.tecnologia.consultoria@gmail.com
+
+	# Para TESTAR sem gastar o limite do Let's Encrypt, descomente a linha abaixo
+	# (emite certificado "de mentira"; o navegador vai reclamar — é esperado):
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+appnosso.com {
+	root * /srv
+	encode zstd gzip
+
+	# Deixa /privacidade servir /privacidade.html, /vs-honeydue -> /vs-honeydue.html etc.
+	# (os links internos já usam .html explícito; isto é só um extra.)
+	try_files {path} {path}.html {path}/index.html
+	file_server
+
+	header {
+		# HTTPS obrigatório por 1 ano. Depois de validar que está tudo ok você
+		# pode reforçar com:  "max-age=31536000; includeSubDomains; preload"
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	log {
+		output stdout
+		format console
+	}
+}
+
+# OPCIONAL — redireciona www.appnosso.com -> appnosso.com.
+# Habilite só DEPOIS de criar o registro DNS de "www" apontando pro servidor,
+# senão o Caddy não consegue emitir o certificado e trava a emissão.
+# www.appnosso.com {
+# 	redir https://appnosso.com{uri} permanent
+# }

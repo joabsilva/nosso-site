@@ -1,0 +1,2 @@
+# Deploy alvo é Linux (container Caddy) — mantém tudo em LF, inclusive no Windows.
+* text=auto eol=lf

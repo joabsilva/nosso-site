@@ -1,0 +1,514 @@
+<!doctype html>
+<!--
+  Página de comparação "Nosso vs Honeydue" — estática, para hospedar em site/.
+
+  Botões de download -> https://appnosso.com (troque pelos links reais das lojas quando existirem).
+  Privacidade -> ./privacidade.html. Contato -> jobs.tecnologia.consultoria@gmail.com.
+
+  Todos os dados sobre o Honeydue nesta página são: (a) fatos verificáveis (é gratuito,
+  conecta bancos, é focado em casais) ou (b) relatos atribuídos ("usuários relatam", "segundo
+  reviews"). A comparação inclui os pontos fortes do Honeydue de propósito — página de
+  comparação honesta converte melhor e não vira alvo de reclamação.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<title>Nosso vs Honeydue — qual app de finanças de casal escolher</title>
+<meta name="description" content="Comparação honesta entre Nosso e Honeydue: conexão bancária, atualizações, contas fixas e parceladas, privacidade e preço. Qual faz mais sentido pro seu casal.">
+<meta property="og:title" content="Nosso vs Honeydue">
+<meta property="og:description" content="Comparação honesta entre os dois apps de finanças para casais.">
+<meta property="og:type" content="article">
+<!-- opcional: <link rel="canonical" href="https://SEUDOMINIO/vs-honeydue.html"> -->
+<style>
+  :root{
+    --bg:#0E1116; --surface:#171B22; --surface-2:#1F242D; --rule:#2A313C;
+    --fg:#F2F4F7; --dim:#9AA4B2; --faint:#6B7480;
+    --accent:#F2A65A; --accent-ink:#1A1206; --mint:#5FD6A6; --coral:#F2708A;
+    --maxw:52rem;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{line-height:1.22; margin:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 1.25rem}
+  .placeholder{color:var(--accent); font-weight:600}
+
+  header{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
+  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--maxw); margin:0 auto}
+  .brand{display:flex; align-items:center; gap:.55rem; font-weight:700}
+  .brand .mark{width:22px; height:22px; flex:0 0 auto}
+  nav .spacer{flex:1}
+  .langbar{display:flex; gap:.35rem}
+  .langbar button{font:inherit; font-size:.8rem; padding:.25rem .6rem; border-radius:999px;
+    border:1px solid var(--rule); background:transparent; color:var(--dim); cursor:pointer}
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .btn{display:inline-flex; align-items:center; gap:.5rem; justify-content:center;
+    padding:.55rem .95rem; border-radius:11px; font-weight:600; font-size:.9rem;
+    border:1px solid var(--rule); color:var(--fg); background:var(--surface-2)}
+  .btn.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+  .btn.small{padding:.4rem .8rem; font-size:.82rem}
+
+  main{padding:2.5rem 0 1rem}
+  .kicker{color:var(--faint); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.5rem}
+  h1{font-size:2rem; letter-spacing:-.01em}
+  .updated{color:var(--faint); font-size:.85rem; margin-top:.5rem}
+  .lead{font-size:1.1rem; color:var(--dim); margin:1.25rem 0}
+  .tldr{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.15rem 1.25rem; margin:1.5rem 0 2.25rem}
+  .tldr strong{color:var(--fg)}
+
+  section{padding:2rem 0; border-top:1px solid var(--rule); margin-top:1.5rem}
+  section h2{font-size:1.35rem; margin-bottom:.9rem}
+  p{margin:.7rem 0}
+  ul{margin:.7rem 0; padding-left:1.2rem}
+  li{margin:.35rem 0}
+
+  .cmp{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.92rem}
+  .cmp th,.cmp td{text-align:left; padding:.7rem .6rem; border-bottom:1px solid var(--rule); vertical-align:top}
+  .cmp thead th{color:var(--dim); font-weight:600; font-size:.82rem; text-transform:uppercase; letter-spacing:.04em}
+  .cmp tbody th{font-weight:600; width:34%}
+  .cmp td.nosso{color:var(--fg)}
+  .cmp td.hd{color:var(--dim)}
+  .yes{color:var(--mint); font-weight:700}
+  .no{color:var(--coral); font-weight:700}
+  .tilde{color:var(--faint)}
+  .cmp-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+  .two{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+  .two .col{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.1rem}
+  .two .col h3{font-size:1rem; margin-bottom:.5rem}
+  .two .col.honey h3{color:var(--dim)}
+  .two .col ul{padding-left:1.05rem; color:var(--dim)}
+
+  .quote{border-left:2px solid var(--rule); padding:.2rem 0 .2rem 1rem; margin:.9rem 0; color:var(--dim); font-style:italic}
+  .quote cite{display:block; font-style:normal; font-size:.8rem; color:var(--faint); margin-top:.3rem}
+
+  .cta{background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:1.5rem; text-align:center; margin-top:2rem}
+  .cta .btn{margin:.3rem}
+
+  footer{padding:2.5rem 0 3rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.85rem; margin-top:2rem}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
+  footer a{color:var(--dim)}
+  footer .disclaimer{flex-basis:100%; color:var(--faint); font-size:.78rem; margin-top:.5rem}
+
+  /* ---------- motion & vida ---------- */
+
+  /* micro-interações (valem sempre, ficam sutis) */
+  .btn,.langbar button,.two .col{
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), background-color .2s ease,
+               border-color .2s ease, box-shadow .25s ease, color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.985)}
+  .btn.primary:hover{box-shadow:0 12px 30px -10px rgba(242,166,90,.55)}
+  .langbar button:hover{color:var(--fg); border-color:var(--faint)}
+  .two .col:hover{transform:translateY(-3px); border-color:#3a4350}
+  .cmp tbody tr{transition:background-color .18s ease}
+  .cmp tbody tr:hover{background:rgba(242,166,90,.045)}
+
+  header{transition:box-shadow .3s ease, background-color .3s ease}
+  header.scrolled{box-shadow:0 12px 34px -14px rgba(0,0,0,.6)}
+
+  /* holofote: uma luz âmbar acompanha o cursor pela página inteira (sensação de relevo) */
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+    .cursor-glow{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      opacity:0; transition:opacity .5s ease;
+      background:radial-gradient(600px circle at var(--gx,50%) var(--gy,-20%),
+        rgba(242,166,90,.12), transparent 60%);
+    }
+    body.cursor-active .cursor-glow{opacity:1}
+
+    /* foco mais forte no painel sob o cursor */
+    .two .col{position:relative}
+    .two .col h3,.two .col ul{position:relative; z-index:1}
+    .two .col::after{
+      content:""; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit;
+      background:radial-gradient(200px circle at var(--mx,-300px) var(--my,-300px),
+        rgba(242,166,90,.12), transparent 60%);
+      opacity:0; transition:opacity .4s ease;
+    }
+    .two .col:hover::after{opacity:1}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    /* entradas ao rolar (classe adicionada via JS: sem JS, nada some) */
+    .reveal{opacity:0; transform:translateY(22px);
+      transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+  }
+
+  [hidden]{display:none !important}
+  @media (max-width:640px){
+    h1{font-size:1.6rem}
+    .two{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="./index.html">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
+        <circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </a>
+    <span class="spacer"></span>
+    <div class="langbar" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn small primary" href="#baixar" data-i18n="nav.cta">Baixar</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <p class="kicker" data-i18n="kicker">Comparação</p>
+  <h1 data-i18n="h1">Nosso vs Honeydue</h1>
+  <p class="updated" data-i18n="updated">Comparação honesta, atualizada em <span class="placeholder">setembro de 2026</span>.</p>
+
+  <p class="lead" data-i18n="lead">
+    Os dois são apps <strong>gratuitos</strong> feitos para casais controlarem os gastos do lar
+    e verem quem deve a quem. A diferença principal é filosófica: o Honeydue <strong>conecta
+    sua conta bancária</strong> e importa as transações; o Nosso <strong>não conecta banco</strong>
+    e você lança os gastos em segundos.
+  </p>
+
+  <div class="tldr" data-i18n="tldr">
+    <strong>Resumo:</strong> escolha o <strong>Honeydue</strong> se você quer importação
+    automática das transações do banco e não se incomoda com um app que quase não recebe
+    atualizações desde 2021. Escolha o <strong>Nosso</strong> se você já se cansou de
+    reconexão de banco, prefere lançar na mão em 3 segundos, quer contas fixas e compras
+    parceladas, e quer um app em desenvolvimento ativo — em português, inglês e espanhol.
+  </div>
+
+  <section>
+    <h2 data-i18n="table.h2">Lado a lado</h2>
+    <div class="cmp-scroll">
+      <table class="cmp">
+        <thead>
+          <tr><th data-i18n="table.col0">&nbsp;</th><th>Nosso</th><th>Honeydue</th></tr>
+        </thead>
+        <tbody data-i18n-rows>
+          <tr>
+            <th>Preço</th>
+            <td class="nosso" data-i18n="r.price.n">Grátis (planos pagos opcionais no futuro; lançar gasto e ver o histórico serão sempre grátis)</td>
+            <td class="hd" data-i18n="r.price.h">Grátis</td>
+          </tr>
+          <tr>
+            <th>Conexão bancária</th>
+            <td class="nosso" data-i18n="r.bank.n"><span class="no">Não</span> — por decisão de produto. Você lança na mão ou compartilha o valor de outro app.</td>
+            <td class="hd" data-i18n="r.bank.h"><span class="yes">Sim</span> — conecta 20.000+ instituições (foco em bancos dos EUA).</td>
+          </tr>
+          <tr>
+            <th>Importação automática de transações</th>
+            <td class="nosso" data-i18n="r.import.n"><span class="no">Não</span></td>
+            <td class="hd" data-i18n="r.import.h"><span class="yes">Sim</span> (quando a conexão está funcionando)</td>
+          </tr>
+          <tr>
+            <th>"Quem deve a quem" + acerto de contas</th>
+            <td class="nosso"><span class="yes">Sim</span></td>
+            <td class="hd"><span class="yes">Sim</span></td>
+          </tr>
+          <tr>
+            <th>Rateio meu / seu / nosso</th>
+            <td class="nosso" data-i18n="r.split.n"><span class="yes">Sim</span>, incluindo divisão em valores exatos ("eu pago R$ 40, você o resto")</td>
+            <td class="hd" data-i18n="r.split.h"><span class="tilde">Parcial</span> — divisão por transação, sem o mesmo nível de controle</td>
+          </tr>
+          <tr>
+            <th>Contas fixas (recorrentes)</th>
+            <td class="nosso"><span class="yes">Sim</span></td>
+            <td class="hd" data-i18n="r.recur.h"><span class="yes">Sim</span> — lembretes de contas</td>
+          </tr>
+          <tr>
+            <th>Compras parceladas (3/12, saldo a pagar)</th>
+            <td class="nosso"><span class="yes">Sim</span></td>
+            <td class="hd"><span class="no">Não</span></td>
+          </tr>
+          <tr>
+            <th>Chat / reações nas transações</th>
+            <td class="nosso"><span class="no">Não</span></td>
+            <td class="hd" data-i18n="r.chat.h"><span class="yes">Sim</span> — é uma marca registrada do Honeydue</td>
+          </tr>
+          <tr>
+            <th>Onboarding do casal</th>
+            <td class="nosso" data-i18n="r.onb.n">Código de 6 letras — o segundo parceiro entra sem criar conta</td>
+            <td class="hd" data-i18n="r.onb.h">Cada um cria conta e faz login</td>
+          </tr>
+          <tr>
+            <th>Exportar seus dados (CSV)</th>
+            <td class="nosso" data-i18n="r.export.n"><span class="yes">Sim</span>, sempre grátis</td>
+            <td class="hd" data-i18n="r.export.h"><span class="tilde">Limitado</span> — usuários relatam dificuldade para exportar</td>
+          </tr>
+          <tr>
+            <th>Anúncios / SDK de analytics de terceiros</th>
+            <td class="nosso" data-i18n="r.ads.n"><span class="yes">Nenhum</span></td>
+            <td class="hd" data-i18n="r.ads.h">App gratuito de uma empresa de crédito (Mission Lane, que adquiriu o Honeydue em 2021)</td>
+          </tr>
+          <tr>
+            <th>Idiomas</th>
+            <td class="nosso">Português, inglês, espanhol</td>
+            <td class="hd" data-i18n="r.lang.h">Inglês (foco no mercado dos EUA)</td>
+          </tr>
+          <tr>
+            <th>Desenvolvimento ativo</th>
+            <td class="nosso" data-i18n="r.dev.n"><span class="yes">Sim</span> — em construção agora, updates frequentes</td>
+            <td class="hd" data-i18n="r.dev.h"><span class="tilde">Baixo</span> — sem grandes novidades divulgadas desde a aquisição em 2021</td>
+          </tr>
+          <tr>
+            <th>Nota nas lojas</th>
+            <td class="nosso" data-i18n="r.rating.n">Novo — poucas avaliações ainda</td>
+            <td class="hd" data-i18n="r.rating.h">~4,3–4,4 na App Store</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="when.h2">Quando cada um é a escolha certa</h2>
+    <div class="two">
+      <div class="col honey">
+        <h3 data-i18n="when.h.h">Fique no Honeydue se…</h3>
+        <ul>
+          <li data-i18n="when.h.1">Você quer que as transações do banco entrem sozinhas e sua conexão bancária funciona bem.</li>
+          <li data-i18n="when.h.2">Você usa bancos dos EUA e a interface em inglês não é problema.</li>
+          <li data-i18n="when.h.3">Você gosta do chat e das reações em cada transação.</li>
+          <li data-i18n="when.h.4">Já usa há anos, está adaptado e não sente falta de novidades.</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3 data-i18n="when.n.h">Troque pelo Nosso se…</h3>
+        <ul>
+          <li data-i18n="when.n.1">Você já reconectou o banco no seu app atual mais vezes do que gostaria.</li>
+          <li data-i18n="when.n.2">Prefere lançar o gasto na mão em 3 segundos e ter controle total das categorias.</li>
+          <li data-i18n="when.n.3">Quer contas fixas <em>e</em> compras parceladas (aluguel, streaming, o sofá em 12×).</li>
+          <li data-i18n="when.n.4">Quer um app em desenvolvimento ativo, em português, feito por um time pequeno e independente.</li>
+          <li data-i18n="when.n.5">Não quer seu dinheiro dentro de um app de uma empresa de crédito.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="cmp2.h2">O que os usuários reclamam do Honeydue</h2>
+    <p data-i18n="cmp2.p">Segundo análises de imprensa e avaliações de usuários em 2026, as queixas mais repetidas são:</p>
+    <ul>
+      <li data-i18n="cmp2.l1"><strong>Transações que aparecem tarde demais</strong> — o atraso da sincronização bancária.</li>
+      <li data-i18n="cmp2.l2"><strong>Não dá para mudar a categoria de uma transação</strong> depois de importada.</li>
+      <li data-i18n="cmp2.l3"><strong>Zero automação</strong> — sem regras de palavra-chave, sem recategorização em massa.</li>
+    </ul>
+    <p data-i18n="cmp2.p2">O Nosso evita as duas primeiras por não depender de conexão bancária: nada de sincronização atrasando, e toda categoria é escolhida (e editável) por você.</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="honest.h2">O que o Nosso ainda NÃO tem</h2>
+    <p data-i18n="honest.p">Comparação honesta funciona nos dois sentidos:</p>
+    <ul>
+      <li data-i18n="honest.l1"><strong>Sem importação automática.</strong> Se você quer que os gastos entrem sozinhos do banco, o Nosso não faz isso — é de propósito, mas é uma escolha que não serve pra todo mundo.</li>
+      <li data-i18n="honest.l2"><strong>Sem histórico de anos.</strong> É um app novo; a base de usuários e a quantidade de avaliações ainda são pequenas.</li>
+      <li data-i18n="honest.l3"><strong>iOS em beta.</strong> No iPhone, hoje, o acesso é pelo TestFlight.</li>
+      <li data-i18n="honest.l4"><strong>Sem chat nas transações.</strong> Se essa é a parte que você mais gosta do Honeydue, vai sentir falta.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 data-i18n="mig.h2">Vindo do Honeydue?</h2>
+    <p data-i18n="mig.p">Não há importação automática de um app para o outro. O caminho é: no Honeydue, exporte o que der (ou anote o saldo atual entre vocês); no Nosso, crie o espaço do casal e comece do mês corrente. Como o Nosso é sobre <em>daqui pra frente</em> — quanto gastamos este mês, quem deve a quem agora — recomeçar do zero costuma ser rápido.</p>
+  </section>
+
+  <div class="cta" id="baixar">
+    <h2 data-i18n="cta.h" style="border:none; padding:0; margin-bottom:.4rem">Experimente o Nosso</h2>
+    <p data-i18n="cta.p" style="color:var(--dim); margin-top:0">Grátis. Dois minutos pra configurar. Nenhum banco, nenhum cartão.</p>
+    <a class="btn primary" href="https://appnosso.com">App Store</a>
+    <a class="btn" href="https://appnosso.com">Google Play</a>
+    <p style="margin-top:.8rem"><a href="./index.html" data-i18n="cta.back">← Voltar para a página inicial</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </span>
+    <span class="spacer" style="flex:1"></span>
+    <a href="./privacidade.html" data-i18n="foot.privacy">Política de privacidade</a>
+    <a href="mailto:jobs.tecnologia.consultoria@gmail.com" data-i18n="foot.contact">Contato</a>
+    <p class="disclaimer" data-i18n="foot.disc">"Honeydue" é marca de seus respectivos donos e não tem qualquer vínculo com o Nosso. As informações sobre o Honeydue nesta página vêm de fontes públicas (lojas de apps, imprensa, avaliações de usuários) e podem mudar. Corrija-nos por <a href="mailto:jobs.tecnologia.consultoria@gmail.com">e-mail</a> se algo estiver desatualizado.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EN = {
+    "nav.cta":"Get the app",
+    "kicker":"Comparison",
+    "h1":"Nosso vs Honeydue",
+    "updated":"Honest comparison, updated <span class=\"placeholder\">September 2026</span>.",
+    "lead":"Both are <strong>free</strong> apps for couples to track household spending and see who owes whom. The core difference is philosophical: Honeydue <strong>connects your bank account</strong> and imports transactions; Nosso <strong>does not connect a bank</strong> and you log expenses in seconds.",
+    "tldr":"<strong>Summary:</strong> pick <strong>Honeydue</strong> if you want automatic bank-transaction import and don't mind an app that has barely been updated since 2021. Pick <strong>Nosso</strong> if you're tired of bank reconnections, prefer to log in 3 seconds, want recurring bills and installment purchases, and want an actively developed app — in Portuguese, English and Spanish.",
+    "table.h2":"Side by side",
+    "table.col0":"&nbsp;",
+    "r.price.n":"Free (optional paid plans later; logging an expense and viewing history will always be free)",
+    "r.price.h":"Free",
+    "r.bank.n":"<span class=\"no\">No</span> — by product decision. You log manually or share an amount from another app.",
+    "r.bank.h":"<span class=\"yes\">Yes</span> — connects 20,000+ institutions (US-bank focused).",
+    "r.import.n":"<span class=\"no\">No</span>",
+    "r.import.h":"<span class=\"yes\">Yes</span> (when the connection is working)",
+    "r.split.n":"<span class=\"yes\">Yes</span>, including splitting by exact amounts (\"I pay R$ 40, you the rest\")",
+    "r.split.h":"<span class=\"tilde\">Partial</span> — split per transaction, without the same level of control",
+    "r.recur.h":"<span class=\"yes\">Yes</span> — bill reminders",
+    "r.chat.h":"<span class=\"yes\">Yes</span> — a Honeydue signature feature",
+    "r.onb.n":"6-letter code — the second partner joins without creating an account",
+    "r.onb.h":"Each person creates an account and logs in",
+    "r.export.n":"<span class=\"yes\">Yes</span>, always free",
+    "r.export.h":"<span class=\"tilde\">Limited</span> — users report difficulty exporting",
+    "r.ads.n":"<span class=\"yes\">None</span>",
+    "r.ads.h":"Free app from a lending company (Mission Lane, which acquired Honeydue in 2021)",
+    "r.lang.h":"English (US-market focused)",
+    "r.dev.n":"<span class=\"yes\">Yes</span> — being built right now, frequent updates",
+    "r.dev.h":"<span class=\"tilde\">Low</span> — no major news announced since the 2021 acquisition",
+    "r.rating.n":"New — few ratings yet",
+    "r.rating.h":"~4.3–4.4 on the App Store",
+    "when.h2":"When each one is the right pick",
+    "when.h.h":"Stay on Honeydue if…",
+    "when.h.1":"You want bank transactions to flow in automatically and your bank connection works well.",
+    "when.h.2":"You use US banks and an English-only interface is fine.",
+    "when.h.3":"You like the chat and reactions on each transaction.",
+    "when.h.4":"You've used it for years, you're adapted, and you don't miss new features.",
+    "when.n.h":"Switch to Nosso if…",
+    "when.n.1":"You've reconnected your bank in your current app more times than you'd like.",
+    "when.n.2":"You'd rather log the expense by hand in 3 seconds and keep full control of categories.",
+    "when.n.3":"You want recurring bills <em>and</em> installment purchases (rent, streaming, the sofa in 12×).",
+    "when.n.4":"You want an actively developed app, made by a small independent team.",
+    "when.n.5":"You'd rather your money not live inside an app owned by a lender.",
+    "cmp2.h2":"What users complain about in Honeydue",
+    "cmp2.p":"According to press coverage and user reviews in 2026, the most repeated complaints are:",
+    "cmp2.l1":"<strong>Transactions that show up too late</strong> — the lag of bank sync.",
+    "cmp2.l2":"<strong>You can't change a transaction's category</strong> after it's imported.",
+    "cmp2.l3":"<strong>Zero automation</strong> — no keyword rules, no bulk recategorization.",
+    "cmp2.p2":"Nosso avoids the first two by not relying on a bank connection: no sync lagging, and every category is chosen (and editable) by you.",
+    "honest.h2":"What Nosso does NOT have yet",
+    "honest.p":"Honest comparison works both ways:",
+    "honest.l1":"<strong>No automatic import.</strong> If you want expenses to flow in from your bank by themselves, Nosso doesn't do that — deliberate, but not a fit for everyone.",
+    "honest.l2":"<strong>No years of track record.</strong> It's a new app; the user base and review count are still small.",
+    "honest.l3":"<strong>iOS in beta.</strong> On iPhone, access today is via TestFlight.",
+    "honest.l4":"<strong>No chat on transactions.</strong> If that's your favorite Honeydue feature, you'll miss it.",
+    "mig.h2":"Coming from Honeydue?",
+    "mig.p":"There is no automatic import from one app to the other. The path is: in Honeydue, export what you can (or note the current balance between you two); in Nosso, create the couple's space and start from the current month. Since Nosso is about <em>going forward</em> — how much we spent this month, who owes whom right now — starting fresh is usually quick.",
+    "cta.h":"Try Nosso",
+    "cta.p":"Free. Two minutes to set up. No bank, no card.",
+    "cta.back":"← Back to the home page",
+    "foot.privacy":"Privacy policy","foot.contact":"Contact",
+    "foot.disc":"\"Honeydue\" is a trademark of its respective owners and has no affiliation with Nosso. Information about Honeydue on this page comes from public sources (app stores, press, user reviews) and may change. Correct us by <a href=\"mailto:jobs.tecnologia.consultoria@gmail.com\">email</a> if something is out of date."
+  };
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var PT = {}; nodes.forEach(function(n){ PT[n.dataset.i18n] = n.innerHTML; });
+  var buttons = document.querySelectorAll('.langbar button');
+  function apply(lang){
+    var d = lang === 'en' ? EN : PT;
+    nodes.forEach(function(n){ var v = d[n.dataset.i18n]; if (v != null) n.innerHTML = v; });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = lang === 'en'
+      ? "Nosso vs Honeydue — which couples finance app to choose"
+      : "Nosso vs Honeydue — qual app de finanças de casal escolher";
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('nosso-lang', lang); } catch(e){}
+  }
+  var initial = 'pt';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'pt') initial = q;
+    else { var s = localStorage.getItem('nosso-lang');
+      if (s === 'en' || s === 'pt') initial = s;
+      else if ((navigator.language||'').toLowerCase().indexOf('pt') !== 0) initial = 'en'; }
+  } catch(e){}
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
+  if (initial === 'en') apply('en');
+})();
+</script>
+
+<script>
+/* motion: sombra na nav ao rolar, entradas ao aparecer, holofote seguindo o cursor */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var header = document.querySelector('header');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  if (reduce.matches || !('IntersectionObserver' in window)) return;
+
+  var sel = '.kicker, h1, .updated, .lead, .tldr, section h2, section p, section ul, '
+          + '.two .col, .cmp-scroll, .cta';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+  targets.forEach(function(el){
+    el.classList.add('reveal');
+    var sibs = el.parentElement
+      ? [].slice.call(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); })
+      : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 0.06, 0.3) + 's';
+  });
+
+  var sweep = function(){
+    var remaining = 0;
+    targets.forEach(function(el){
+      if (el.classList.contains('in')) return;
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('in');
+      else remaining++;
+    });
+    if (!remaining) window.removeEventListener('scroll', sweep);
+  };
+  window.addEventListener('scroll', sweep, {passive:true});
+  sweep();
+
+  /* holofote: luz âmbar seguindo o cursor pela página + foco no painel sob ele */
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    var spots = [].slice.call(document.querySelectorAll('.two .col'));
+    var queued = false, cx = 0, cy = 0, hovNode = null;
+    var paint = function(){
+      queued = false;
+      document.body.style.setProperty('--gx', cx + 'px');
+      document.body.style.setProperty('--gy', cy + 'px');
+      if (hovNode){
+        var r = hovNode.getBoundingClientRect();
+        hovNode.style.setProperty('--mx', (cx - r.left) + 'px');
+        hovNode.style.setProperty('--my', (cy - r.top) + 'px');
+      }
+    };
+    window.addEventListener('pointermove', function(e){
+      cx = e.clientX; cy = e.clientY;
+      document.body.classList.add('cursor-active');
+      if (!queued){ queued = true; requestAnimationFrame(paint); }
+    }, {passive:true});
+    document.documentElement.addEventListener('mouseleave', function(){
+      document.body.classList.remove('cursor-active');
+    });
+    spots.forEach(function(el){
+      el.addEventListener('pointerenter', function(){ hovNode = el; });
+      el.addEventListener('pointerleave', function(){ if (hovNode === el) hovNode = null; });
+    });
+  }
+})();
+</script>
+</body>
+</html>

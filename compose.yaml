@@ -1,0 +1,27 @@
+name: nosso-site
+
+services:
+  web:
+    build: .
+    image: nosso-site:latest
+    container_name: nosso-site
+    restart: unless-stopped
+    # O host usa systemd-resolved (127.0.0.53), que não funciona dentro do
+    # container. DNS explícito resolve o "connection refused" nas consultas ACME.
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"   # HTTP/3 (QUIC)
+    volumes:
+      # Certificados do Let's Encrypt + chaves da conta ACME.
+      # NÃO apague este volume — se apagar, o Caddy re-emite tudo do zero
+      # e você pode bater no limite semanal do Let's Encrypt.
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

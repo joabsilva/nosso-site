@@ -1,0 +1,642 @@
+<!doctype html>
+<!--
+  Landing page do app "Nosso" — página estática para hospedar.
+
+  Os botões de download apontam para https://appnosso.com — troque pelos links
+  reais da App Store / Google Play (ou do TestFlight / teste interno) quando existirem.
+  Empresa: Jobs Consultoria em Tecnologia da Informação.
+  Contato: jobs.tecnologia.consultoria@gmail.com. Privacidade: ./privacidade.html.
+
+  Deploy: sobe a pasta `site/` em Cloudflare Pages / Netlify / GitHub Pages / Vercel.
+  Uma URL serve os dois idiomas (botão PT/EN no topo).
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<title>Nosso — finanças do casal, sem conectar banco</title>
+<meta name="description" content="App de finanças para casais. Registre um gasto do lar em segundos, veja quem deve a quem, sem conectar banco e sem os dois criarem conta.">
+<meta property="og:title" content="Nosso — finanças do casal">
+<meta property="og:description" content="Registre um gasto do lar em segundos. Sem conectar banco. Sem os dois criarem conta.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#0E1116; --surface:#171B22; --surface-2:#1F242D; --rule:#2A313C;
+    --fg:#F2F4F7; --dim:#9AA4B2; --faint:#6B7480;
+    --accent:#F2A65A; --accent-ink:#1A1206;
+    --mint:#5FD6A6; --coral:#F2708A;
+    --maxw:64rem;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent); text-decoration:none}
+  h1,h2,h3{line-height:1.2; margin:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 1.25rem}
+  .placeholder{color:var(--accent); font-weight:600}
+
+  /* nav */
+  header{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
+  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--maxw); margin:0 auto}
+  .brand{display:flex; align-items:center; gap:.55rem; font-weight:700; font-size:1.05rem}
+  .brand .mark{width:22px; height:22px; flex:0 0 auto}
+  nav .spacer{flex:1}
+  .langbar{display:flex; gap:.35rem}
+  .langbar button{
+    font:inherit; font-size:.8rem; padding:.25rem .6rem; border-radius:999px;
+    border:1px solid var(--rule); background:transparent; color:var(--dim); cursor:pointer;
+  }
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .btn{
+    display:inline-flex; align-items:center; gap:.5rem; justify-content:center;
+    padding:.7rem 1.1rem; border-radius:12px; font-weight:600; font-size:.95rem;
+    border:1px solid var(--rule); color:var(--fg); background:var(--surface-2);
+  }
+  .btn.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+  .btn.small{padding:.5rem .85rem; font-size:.85rem}
+
+  /* hero */
+  .hero{padding:3.5rem 0 2rem}
+  .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:2.5rem; align-items:center}
+  .hero h1{font-size:2.4rem; letter-spacing:-.01em}
+  .hero p.lead{font-size:1.15rem; color:var(--dim); margin:1rem 0 1.75rem}
+  .cta-row{display:flex; flex-wrap:wrap; gap:.75rem}
+  .cta-note{color:var(--faint); font-size:.85rem; margin-top:.85rem}
+
+  /* phone mockup */
+  .phone{
+    width:270px; margin:0 auto; border-radius:36px; padding:10px;
+    background:#000; border:1px solid var(--rule); box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+  }
+  .screen{background:var(--bg); border-radius:27px; overflow:hidden; padding:14px 12px 16px}
+  .screen .top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:.6rem}
+  .screen .top b{font-size:.95rem}
+  .screen .top span{color:var(--faint); font-size:.75rem}
+  .screen .big{font-size:.8rem; color:var(--dim)}
+  .screen .amount{font-size:1.6rem; font-weight:700; margin:.1rem 0 .9rem}
+  .card{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:.7rem .8rem; margin-bottom:.7rem}
+  .card .k{color:var(--faint); font-size:.7rem; text-transform:uppercase; letter-spacing:.04em}
+  .card .v{font-size:.9rem; margin-top:.15rem}
+  .card .v b{color:var(--mint)}
+  .pillbtn{display:inline-block; margin-top:.5rem; font-size:.72rem; font-weight:600; color:var(--accent-ink); background:var(--accent); border-radius:999px; padding:.25rem .6rem}
+  .row{display:flex; align-items:center; gap:.55rem; padding:.5rem 0; border-top:1px solid var(--rule); font-size:.8rem}
+  .row:first-of-type{border-top:none}
+  .row .ico{width:22px; height:22px; border-radius:7px; background:var(--surface-2); display:grid; place-items:center; font-size:.8rem}
+  .row .mid{flex:1; min-width:0}
+  .row .mid small{color:var(--faint); display:block; font-size:.7rem}
+  .row .amt{font-weight:600}
+  .badge{font-size:.62rem; background:var(--surface-2); border:1px solid var(--rule); border-radius:6px; padding:0 .3rem; color:var(--dim)}
+  .fab{margin-top:.7rem; text-align:center}
+  .fab span{display:inline-grid; place-items:center; width:38px; height:38px; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-size:1.3rem; font-weight:700}
+
+  /* sections */
+  section{padding:3rem 0; border-top:1px solid var(--rule)}
+  section h2{font-size:1.5rem; margin-bottom:.4rem}
+  section .sub{color:var(--dim); margin-bottom:1.75rem}
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+  .cards .c{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.1rem}
+  .cards .c h3{font-size:1rem; margin-bottom:.35rem}
+  .cards .c p{color:var(--dim); font-size:.9rem; margin:0}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; counter-reset:s}
+  .steps .s{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.1rem; position:relative}
+  .steps .s::before{counter-increment:s; content:counter(s); position:absolute; top:-.7rem; left:1rem; width:1.6rem; height:1.6rem; border-radius:50%; background:var(--accent); color:var(--accent-ink); font-weight:700; display:grid; place-items:center; font-size:.85rem}
+  .steps .s h3{font-size:.95rem; margin:.4rem 0 .3rem}
+  .steps .s p{color:var(--dim); font-size:.88rem; margin:0}
+  .feat{display:grid; grid-template-columns:repeat(2,1fr); gap:.5rem 2rem}
+  .feat li{list-style:none; padding:.55rem 0; border-bottom:1px solid var(--rule); font-size:.95rem}
+  .feat li small{color:var(--faint); display:block; font-size:.82rem}
+  .privacy-box{background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:1.5rem}
+  .privacy-box ul{margin:.5rem 0 0; padding-left:1.1rem; color:var(--dim)}
+  details{border-top:1px solid var(--rule); padding:.9rem 0}
+  details summary{cursor:pointer; font-weight:600; list-style:none}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+"; float:right; color:var(--faint)}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--dim); margin:.7rem 0 0}
+  .cta-final{text-align:center}
+  .cta-final .cta-row{justify-content:center}
+  footer{padding:2.5rem 0 3rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.85rem}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
+  footer a{color:var(--dim)}
+  footer a:hover{color:var(--fg)}
+  footer .foot-nav{
+    flex-basis:100%; display:flex; flex-wrap:wrap; align-items:baseline; gap:.5rem 1.25rem;
+    padding-bottom:1.4rem; margin-bottom:.4rem; border-bottom:1px solid var(--rule);
+  }
+  footer .foot-nav .label{
+    color:var(--faint); text-transform:uppercase; letter-spacing:.06em; font-size:.72rem; font-weight:600;
+  }
+
+  /* ---------- motion & vida ---------- */
+
+  /* micro-interações (valem sempre, ficam sutis) */
+  .btn,.cards .c,.steps .s,.langbar button,.feat li,.pillbtn,.privacy-box a{
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), background-color .2s ease,
+               border-color .2s ease, box-shadow .25s ease, color .15s ease;
+  }
+  a{transition:color .15s ease}
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.985)}
+  .btn.primary:hover{box-shadow:0 12px 30px -10px rgba(242,166,90,.55)}
+  .cards .c:hover,.steps .s:hover{transform:translateY(-4px); border-color:#3a4350; background:var(--surface-2)}
+  .feat li:hover{border-bottom-color:var(--accent)}
+  .langbar button:hover{color:var(--fg); border-color:var(--faint)}
+  .pillbtn:hover{transform:translateY(-1px)}
+
+  header{transition:box-shadow .3s ease, background-color .3s ease}
+  header.scrolled{box-shadow:0 12px 34px -14px rgba(0,0,0,.6)}
+
+  /* brilho de ambiente atrás do hero */
+  .hero{position:relative; isolation:isolate; overflow-x:clip}
+  .hero::before{
+    content:""; position:absolute; z-index:-1; top:-170px; right:-130px;
+    width:440px; height:440px; border-radius:50%;
+    background:radial-gradient(circle at center, rgba(242,166,90,.16), rgba(242,166,90,0) 70%);
+    pointer-events:none;
+  }
+
+  /* holofote: uma luz âmbar acompanha o cursor pela página inteira (sensação de relevo) */
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+    .cursor-glow{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      opacity:0; transition:opacity .5s ease;
+      background:radial-gradient(600px circle at var(--gx,50%) var(--gy,-20%),
+        rgba(242,166,90,.12), transparent 60%);
+    }
+    body.cursor-active .cursor-glow{opacity:1}
+
+    /* foco mais forte no card sob o cursor */
+    .cards .c,.steps .s{position:relative}
+    .cards .c h3,.cards .c p,.steps .s h3,.steps .s p{position:relative; z-index:1}
+    .cards .c::after,.steps .s::after{
+      content:""; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit;
+      background:radial-gradient(200px circle at var(--mx,-300px) var(--my,-300px),
+        rgba(242,166,90,.13), transparent 60%);
+      opacity:0; transition:opacity .4s ease;
+    }
+    .cards .c:hover::after,.steps .s:hover::after{opacity:1}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    /* entradas ao rolar (classe adicionada via JS: sem JS, nada some) */
+    .reveal{opacity:0; transform:translateY(22px);
+      transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+
+    /* celular flutuando + brilho à deriva */
+    .phone.floating{animation:nosso-float 7s ease-in-out infinite}
+    @keyframes nosso-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    .hero::before{animation:nosso-drift 17s ease-in-out infinite alternate}
+    @keyframes nosso-drift{to{transform:translate(-46px,38px) scale(1.12)}}
+
+    /* linhas da tela entram escalonadas */
+    .screen-anim>*{opacity:0; transform:translateY(10px); animation:nosso-rowin .55s cubic-bezier(.2,.7,.2,1) forwards}
+    .screen-anim>*:nth-child(1){animation-delay:.06s}
+    .screen-anim>*:nth-child(2){animation-delay:.13s}
+    .screen-anim>*:nth-child(3){animation-delay:.20s}
+    .screen-anim>*:nth-child(4){animation-delay:.27s}
+    .screen-anim>*:nth-child(5){animation-delay:.34s}
+    .screen-anim>*:nth-child(6){animation-delay:.41s}
+    .screen-anim>*:nth-child(7){animation-delay:.48s}
+    .screen-anim>*:nth-child(8){animation-delay:.55s}
+    @keyframes nosso-rowin{to{opacity:1; transform:none}}
+
+    /* pulso no botão de adicionar */
+    .fab span{position:relative}
+    .fab span::after{content:""; position:absolute; inset:0; border-radius:50%;
+      box-shadow:0 0 0 0 rgba(242,166,90,.5); animation:nosso-pulse 2.6s ease-out infinite}
+    @keyframes nosso-pulse{0%{box-shadow:0 0 0 0 rgba(242,166,90,.5)}70%,100%{box-shadow:0 0 0 16px rgba(242,166,90,0)}}
+
+    /* abrir uma pergunta do FAQ */
+    details[open] p{animation:nosso-fadein .35s ease}
+    @keyframes nosso-fadein{from{opacity:0; transform:translateY(-4px)}to{opacity:1; transform:none}}
+  }
+
+  [hidden]{display:none !important}
+
+  @media (max-width:820px){
+    .hero-grid{grid-template-columns:1fr; gap:2rem}
+    .hero h1{font-size:2rem}
+    .cards,.steps{grid-template-columns:1fr}
+    .feat{grid-template-columns:1fr}
+    .phone{order:-1}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
+        <circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </span>
+    <span class="spacer"></span>
+    <div class="langbar" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn small primary" href="#baixar" data-i18n="nav.cta">Baixar</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" style="border-top:none">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 data-i18n="hero.h1">As finanças do casal, sem virar planilha.</h1>
+        <p class="lead" data-i18n="hero.lead">
+          Registre um gasto do lar em segundos, veja sempre <b>quem deve a quem</b> e acerte as
+          contas sem estresse. Sem conectar banco. Sem os dois criarem conta.
+        </p>
+        <div class="cta-row" id="baixar">
+          <a class="btn primary" href="https://appnosso.com"> App Store</a>
+          <a class="btn" href="https://appnosso.com"> Google Play</a>
+        </div>
+        <p class="cta-note" data-i18n="hero.note">
+          Grátis. Beta aberto — durante o beta os botões levam ao TestFlight (iPhone) e ao
+          teste do Google Play (Android).
+        </p>
+      </div>
+
+      <div class="phone" aria-hidden="true">
+        <div class="screen">
+          <div class="top"><b>Nosso</b><span data-i18n="mock.month">setembro</span></div>
+          <div class="big" data-i18n="mock.total">Gasto do lar no mês</div>
+          <div class="amount" data-count="2847.90">R$ 2.847,90</div>
+
+          <div class="card">
+            <div class="k" data-i18n="mock.owes.k">Quem deve a quem</div>
+            <div class="v" data-i18n="mock.owes.v">João deve <b>R$ 143,00</b> pra você</div>
+            <span class="pillbtn" data-i18n="mock.settle">Acertar</span>
+          </div>
+
+          <div class="row">
+            <span class="ico">🛒</span>
+            <span class="mid" data-i18n="mock.r1">Mercado <small>Você pagou · nosso</small></span>
+            <span class="amt">R$ 320,00</span>
+          </div>
+          <div class="row">
+            <span class="ico">🏠</span>
+            <span class="mid" data-i18n="mock.r2">Aluguel <small>Parcelado</small></span>
+            <span class="badge">3/12</span>
+            <span class="amt">R$ 1.200,00</span>
+          </div>
+          <div class="row">
+            <span class="ico">🍔</span>
+            <span class="mid" data-i18n="mock.r3">Delivery <small>João pagou · nosso</small></span>
+            <span class="amt">R$ 74,90</span>
+          </div>
+
+          <div class="fab"><span>+</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="why.h2">Feito pra resolver o que os outros apps não resolvem</h2>
+      <p class="sub" data-i18n="why.sub">As três reclamações que mais aparecem nos apps de finanças de casal — atacadas de propósito.</p>
+      <div class="cards">
+        <div class="c">
+          <h3 data-i18n="why.c1.h">Não conecta banco</h3>
+          <p data-i18n="why.c1.p">Nada de sincronização que quebra toda semana e te obriga a reconectar. Você lança o gasto e pronto.</p>
+        </div>
+        <div class="c">
+          <h3 data-i18n="why.c2.h">Sem conta dupla</h3>
+          <p data-i18n="why.c2.p">Um cria o espaço, o outro entra com um código de 6 letras. Sem os dois preencherem cadastro, sem login obrigatório.</p>
+        </div>
+        <div class="c">
+          <h3 data-i18n="why.c3.h">Seus dados são seus</h3>
+          <p data-i18n="why.c3.p">Sem anúncios, sem rastreador de terceiros. Exporta tudo em CSV a qualquer hora, de graça.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="how.h2">Como funciona</h2>
+      <p class="sub" data-i18n="how.sub">Menos de dois minutos pra começar.</p>
+      <div class="steps">
+        <div class="s">
+          <h3 data-i18n="how.s1.h">Crie o espaço do casal</h3>
+          <p data-i18n="how.s1.p">O app gera um código de 6 letras. Sem e-mail, sem senha.</p>
+        </div>
+        <div class="s">
+          <h3 data-i18n="how.s2.h">Seu par entra com o código</h3>
+          <p data-i18n="how.s2.p">Os dois celulares passam a ver o mesmo painel, ao vivo.</p>
+        </div>
+        <div class="s">
+          <h3 data-i18n="how.s3.h">Lance os gastos do lar</h3>
+          <p data-i18n="how.s3.p">Numa tela só, ou compartilhando o valor de outro app. O "quem deve a quem" se atualiza sozinho.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="feat.h2">O que tem dentro</h2>
+      <p class="sub" data-i18n="feat.sub">O essencial pra um casal parar de brigar por dinheiro — nada além.</p>
+      <ul class="feat">
+        <li data-i18n="feat.1">Rateio meu / seu / nosso <small>ou em valores exatos: "eu pago R$ 40, você paga o resto"</small></li>
+        <li data-i18n="feat.2">Painel do mês <small>gasto do lar + quem deve a quem, sempre visível</small></li>
+        <li data-i18n="feat.3">Acerto de contas <small>total ou parcial, com histórico</small></li>
+        <li data-i18n="feat.4">Contas fixas e compras parceladas <small>aluguel, streaming, o sofá em 12x</small></li>
+        <li data-i18n="feat.5">Captura rápida <small>compartilhe o valor de qualquer app pro Nosso</small></li>
+        <li data-i18n="feat.6">Resumo semanal <small>notificação com o gasto da semana</small></li>
+        <li data-i18n="feat.7">Recuperação por e-mail <small>trocou de celular? seu espaço volta</small></li>
+        <li data-i18n="feat.8">Português, inglês e espanhol <small>a interface segue o idioma do aparelho</small></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="priv.h2">"Seus dados são seus" não é slogan</h2>
+      <div class="privacy-box">
+        <p data-i18n="priv.p">O Nosso é um projeto pequeno, feito por gente que também se cansou de app de finanças que trata seu dinheiro como produto.</p>
+        <ul>
+          <li data-i18n="priv.l1">Sem anúncios e sem SDK de publicidade ou analytics de terceiros.</li>
+          <li data-i18n="priv.l2">Não acessa banco, cartão nem instituição financeira.</li>
+          <li data-i18n="priv.l3">Os dados sincronizam só entre os dois celulares do casal.</li>
+          <li data-i18n="priv.l4">Exportar tudo em CSV é sempre grátis. Apagar tudo, a qualquer momento.</li>
+        </ul>
+        <p style="margin-top:1rem">
+          <a href="./privacidade.html" data-i18n="priv.link">Ler a política de privacidade →</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="wrap">
+      <h2 data-i18n="faq.h2">Perguntas frequentes</h2>
+      <div style="margin-top:1rem">
+        <details>
+          <summary data-i18n="faq.q1">Precisa conectar o banco?</summary>
+          <p data-i18n="faq.a1">Não. Você lança os gastos manualmente ou compartilhando o valor de outro app. É de propósito: conexão bancária é a coisa que mais quebra nos apps concorrentes.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q2">É grátis?</summary>
+          <p data-i18n="faq.a2">Sim. Hoje o app é 100% gratuito. No futuro alguns recursos avançados podem virar um plano pago barato — mas lançar gasto, ver o mês e o histórico completo serão sempre de graça.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q3">Funciona no iPhone e no Android?</summary>
+          <p data-i18n="faq.a3">Sim, nos dois. O casal pode ter um de cada — os dados sincronizam entre as plataformas.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q4">E se eu trocar de celular ou perder o aparelho?</summary>
+          <p data-i18n="faq.a4">Se você tiver ativado a recuperação por e-mail (opcional), recupera o espaço do casal no aparelho novo com um código enviado por e-mail.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q5">Onde meus dados ficam?</summary>
+          <p data-i18n="faq.a5">No seu aparelho e, quando você conecta o espaço do casal, num provedor de banco de dados (Supabase), com acesso restrito aos dois membros. Detalhes na política de privacidade.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq.q6">Dá pra usar sozinho?</summary>
+          <p data-i18n="faq.a6">Dá. Você pode criar o espaço e usar só você para controlar os gastos compartilhados da casa — e convidar o par quando quiser.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-final">
+    <div class="wrap">
+      <h2 data-i18n="end.h2">Comece hoje, de graça</h2>
+      <p class="sub" data-i18n="end.sub">Dois minutos pra configurar. Nenhum cartão, nenhum banco.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="https://appnosso.com"> App Store</a>
+        <a class="btn" href="https://appnosso.com"> Google Play</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav class="foot-nav" aria-label="Comparações">
+      <span class="label" data-i18n="foot.cmp.label">Comparações</span>
+      <a href="./vs-honeydue.html" data-i18n="foot.cmp.1">Nosso vs Honeydue</a>
+      <a href="./alternativa-ao-monarch.html" data-i18n="foot.cmp.2">Alternativa ao Monarch</a>
+      <a href="./sem-conectar-banco.html" data-i18n="foot.cmp.3">App sem conectar banco</a>
+    </nav>
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
+        <circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </span>
+    <span class="spacer" style="flex:1"></span>
+    <a href="./privacidade.html" data-i18n="foot.privacy">Política de privacidade</a>
+    <a href="mailto:jobs.tecnologia.consultoria@gmail.com" data-i18n="foot.contact">Contato</a>
+    <span data-i18n="foot.by">Feito por Jobs Consultoria em Tecnologia da Informação</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EN = {
+    "nav.cta":"Get the app",
+    "hero.h1":"Your shared finances, without the spreadsheet.",
+    "hero.lead":"Log a household expense in seconds, always see <b>who owes whom</b>, and settle up without the stress. No bank connection. No signing up twice.",
+    "hero.note":"Free. Open beta — during the beta the buttons go to TestFlight (iPhone) and Google Play testing (Android).",
+    "mock.month":"September","mock.total":"Household spending this month",
+    "mock.owes.k":"Who owes whom","mock.owes.v":"João owes you <b>R$ 143.00</b>","mock.settle":"Settle up",
+    "mock.r1":"Groceries <small>You paid · shared</small>",
+    "mock.r2":"Rent <small>Installments</small>",
+    "mock.r3":"Delivery <small>João paid · shared</small>",
+    "why.h2":"Built to fix what other apps don't",
+    "why.sub":"The three complaints that come up most in couples' finance apps — targeted on purpose.",
+    "why.c1.h":"No bank connection","why.c1.p":"No sync that breaks every week and forces you to reconnect. You log the expense and you're done.",
+    "why.c2.h":"No double sign-up","why.c2.p":"One person creates the space, the other joins with a 6-letter code. No forms for both, no mandatory login.",
+    "why.c3.h":"Your data is yours","why.c3.p":"No ads, no third-party trackers. Export everything to CSV any time, for free.",
+    "how.h2":"How it works","how.sub":"Under two minutes to start.",
+    "how.s1.h":"Create the couple's space","how.s1.p":"The app makes a 6-letter code. No email, no password.",
+    "how.s2.h":"Your partner joins with the code","how.s2.p":"Both phones now see the same panel, live.",
+    "how.s3.h":"Log household expenses","how.s3.p":"On one screen, or by sharing an amount from another app. \"Who owes whom\" updates itself.",
+    "feat.h2":"What's inside","feat.sub":"What a couple needs to stop fighting about money — nothing more.",
+    "feat.1":"Split mine / yours / ours <small>or in exact amounts: \"I pay R$ 40, you pay the rest\"</small>",
+    "feat.2":"Monthly panel <small>household spending + who owes whom, always visible</small>",
+    "feat.3":"Settle up <small>full or partial, with history</small>",
+    "feat.4":"Recurring bills and installments <small>rent, streaming, the sofa in 12x</small>",
+    "feat.5":"Quick capture <small>share an amount from any app into Nosso</small>",
+    "feat.6":"Weekly summary <small>a notification with the week's spending</small>",
+    "feat.7":"Email recovery <small>changed phones? your space comes back</small>",
+    "feat.8":"Portuguese, English and Spanish <small>the interface follows your device language</small>",
+    "priv.h2":"\"Your data is yours\" isn't a slogan",
+    "priv.p":"Nosso is a small project, made by people who also got tired of finance apps that treat your money as the product.",
+    "priv.l1":"No ads and no third-party advertising or analytics SDKs.",
+    "priv.l2":"No access to banks, cards or financial institutions.",
+    "priv.l3":"Data syncs only between the couple's two phones.",
+    "priv.l4":"Exporting everything to CSV is always free. Erase everything, any time.",
+    "priv.link":"Read the privacy policy →",
+    "faq.h2":"Frequently asked questions",
+    "faq.q1":"Do I need to connect my bank?","faq.a1":"No. You log expenses manually or by sharing an amount from another app. It's deliberate: bank connection is the thing that breaks most in competing apps.",
+    "faq.q2":"Is it free?","faq.a2":"Yes. The app is 100% free today. Later, some advanced features may become a cheap paid plan — but logging an expense, seeing the month and the full history will always be free.",
+    "faq.q3":"Does it work on iPhone and Android?","faq.a3":"Yes, both. The couple can have one of each — data syncs across platforms.",
+    "faq.q4":"What if I change phones or lose my device?","faq.a4":"If you turned on email recovery (optional), you restore the couple's space on the new device with a code sent by email.",
+    "faq.q5":"Where does my data live?","faq.a5":"On your device and, when you connect the couple's space, on a database provider (Supabase), with access limited to the two members. Details in the privacy policy.",
+    "faq.q6":"Can I use it alone?","faq.a6":"Yes. You can create the space and use it just yourself to track the household's shared expenses — and invite your partner whenever you want.",
+    "end.h2":"Start today, for free","end.sub":"Two minutes to set up. No card, no bank.",
+    "foot.privacy":"Privacy policy","foot.contact":"Contact","foot.by":"Made by Jobs Consultoria em Tecnologia da Informação",
+    "foot.cmp.label":"Comparisons",
+    "foot.cmp.1":"Nosso vs Honeydue",
+    "foot.cmp.2":"Monarch alternative",
+    "foot.cmp.3":"App without a bank connection"
+  };
+
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var PT = {};
+  nodes.forEach(function(n){ PT[n.dataset.i18n] = n.innerHTML; });
+
+  var buttons = document.querySelectorAll('.langbar button');
+
+  function apply(lang){
+    var dict = lang === 'en' ? EN : PT;
+    nodes.forEach(function(n){
+      var v = dict[n.dataset.i18n];
+      if (v != null) n.innerHTML = v;
+    });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = lang === 'en'
+      ? "Nosso — shared finances for couples, no bank connection"
+      : "Nosso — finanças do casal, sem conectar banco";
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('nosso-lang', lang); } catch(e){}
+  }
+
+  var initial = 'pt';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'pt') initial = q;
+    else {
+      var saved = localStorage.getItem('nosso-lang');
+      if (saved === 'en' || saved === 'pt') initial = saved;
+      else if ((navigator.language || '').toLowerCase().indexOf('pt') !== 0) initial = 'en';
+    }
+  } catch(e){}
+
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.dataset.lang); });
+  });
+  if (initial === 'en') apply('en');
+})();
+</script>
+
+<script>
+/* motion: sombra na nav ao rolar, entradas ao aparecer, contagem do valor */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var header = document.querySelector('header');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  if (reduce.matches || !('IntersectionObserver' in window)) return;
+
+  var sel = 'main h2, main .sub, .cards .c, .steps .s, .feat li, .privacy-box, main details, '
+          + '.hero h1, .hero .lead, .hero .cta-row, .hero .cta-note, .phone, .cta-final .cta-row';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+
+  targets.forEach(function(el){
+    el.classList.add('reveal');
+    var sibs = el.parentElement
+      ? [].slice.call(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); })
+      : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 0.07, 0.4) + 's';
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      // revela ao entrar na tela, ou se já passou por cima (scroll rápido)
+      if (!en.isIntersecting && en.boundingClientRect.top > 0) return;
+      var el = en.target;
+      el.classList.add('in');
+      if (el.classList.contains('phone')){
+        var screen = el.querySelector('.screen');
+        if (screen) screen.classList.add('screen-anim');
+        setTimeout(function(){ el.classList.add('floating'); }, 800);
+      }
+      io.unobserve(el);
+    });
+  }, {threshold:0.16, rootMargin:'0px 0px -6% 0px'});
+  targets.forEach(function(el){ io.observe(el); });
+
+  var amount = document.querySelector('.hero .amount');
+  if (amount){
+    var goal = parseFloat(amount.getAttribute('data-count') || '0');
+    var fmt = function(n){ return 'R$ ' + n.toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); };
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        io2.unobserve(en.target);
+        var dur = 1200, t0 = performance.now();
+        var step = function(now){
+          var p = Math.min(1, (now - t0) / dur);
+          amount.textContent = fmt(goal * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(step); else amount.textContent = fmt(goal);
+        };
+        requestAnimationFrame(step);
+      });
+    }, {threshold:1});
+    io2.observe(amount);
+  }
+
+  /* holofote: luz âmbar seguindo o cursor pela página + foco no card sob ele */
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    var spots = [].slice.call(document.querySelectorAll('.cards .c, .steps .s'));
+    var queued = false, cx = 0, cy = 0, hovNode = null;
+    var paint = function(){
+      queued = false;
+      document.body.style.setProperty('--gx', cx + 'px');
+      document.body.style.setProperty('--gy', cy + 'px');
+      if (hovNode){
+        var r = hovNode.getBoundingClientRect();
+        hovNode.style.setProperty('--mx', (cx - r.left) + 'px');
+        hovNode.style.setProperty('--my', (cy - r.top) + 'px');
+      }
+    };
+    window.addEventListener('pointermove', function(e){
+      cx = e.clientX; cy = e.clientY;
+      document.body.classList.add('cursor-active');
+      if (!queued){ queued = true; requestAnimationFrame(paint); }
+    }, {passive:true});
+    document.documentElement.addEventListener('mouseleave', function(){
+      document.body.classList.remove('cursor-active');
+    });
+    spots.forEach(function(el){
+      el.addEventListener('pointerenter', function(){ hovNode = el; });
+      el.addEventListener('pointerleave', function(){ if (hovNode === el) hovNode = null; });
+    });
+  }
+})();
+</script>
+</body>
+</html>

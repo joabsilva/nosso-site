@@ -1,0 +1,547 @@
+<!doctype html>
+<!--
+  Política de Privacidade do app "Nosso" — versão hospedada junto com o site.
+
+  Este arquivo (site/privacidade.html) é a cópia servida no mesmo deploy da
+  landing; as outras páginas do site já linkam para ./privacidade.html.
+  Mantenha o conteúdo em sincronia com legal/privacy-policy.html (mesmo texto).
+
+  Deploy: já vai junto ao subir a pasta `site/` em Cloudflare Pages / Netlify /
+  GitHub Pages / Vercel. Uma URL serve os dois idiomas (botão PT/EN no topo).
+
+  Rodapé aponta para https://appnosso.com/privacidade.html — ajuste se o domínio
+  ou o caminho mudarem.
+  Data de "última atualização" está como 2 de setembro de 2026 — ajuste se
+  publicar noutro dia ou ao revisar o texto.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<title>Política de Privacidade — Nosso</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1c2129;
+    --muted: #5b6572;
+    --rule: #e4e7ec;
+    --accent: #b7702a;
+    --card: #f7f8fa;
+    --maxw: 44rem;
+    --glow-a: rgba(183, 112, 42, .08);
+    --glow-b: rgba(183, 112, 42, .10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1116;
+      --fg: #eceef2;
+      --muted: #9aa4b2;
+      --rule: #262c36;
+      --accent: #f2a65a;
+      --card: #171b22;
+      --glow-a: rgba(242, 166, 90, .10);
+      --glow-b: rgba(242, 166, 90, .12);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  main { max-width: var(--maxw); margin: 0 auto; }
+  h1 { font-size: 1.7rem; line-height: 1.25; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2.2rem 0 .6rem; padding-top: .4rem; }
+  h3 { font-size: 1rem; margin: 1.4rem 0 .4rem; }
+  p, ul { margin: .6rem 0; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .3rem 0; }
+  a { color: var(--accent); }
+  strong { font-weight: 650; }
+  .updated { color: var(--muted); font-size: .9rem; margin: 0 0 1.5rem; }
+  .summary {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .summary p { margin: .4rem 0; }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
+  .langbar {
+    display: flex; gap: .5rem; margin: 0 0 1.75rem;
+  }
+  .langbar button {
+    font: inherit; font-size: .85rem;
+    padding: .3rem .8rem; border-radius: 999px;
+    border: 1px solid var(--rule); background: transparent; color: var(--muted);
+    cursor: pointer;
+  }
+  .langbar button[aria-pressed="true"] {
+    background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600;
+  }
+  .placeholder { color: var(--accent); font-weight: 600; }
+  footer { margin-top: 3rem; color: var(--muted); font-size: .85rem; }
+
+  /* ---------- motion & vida ---------- */
+  .langbar button, a { transition: background-color .2s ease, border-color .2s ease, color .15s ease; }
+  .langbar button:hover { color: var(--fg); border-color: var(--muted); }
+
+  /* holofote: uma luz âmbar discreta acompanha o cursor (sensação de relevo) */
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .cursor-glow {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      opacity: 0; transition: opacity .5s ease;
+      background: radial-gradient(560px circle at var(--gx, 50%) var(--gy, -20%), var(--glow-a), transparent 60%);
+    }
+    body.cursor-active .cursor-glow { opacity: 1; }
+
+    .summary { position: relative; }
+    .summary > * { position: relative; z-index: 1; }
+    .summary::after {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
+      background: radial-gradient(220px circle at var(--mx, -300px) var(--my, -300px), var(--glow-b), transparent 60%);
+      opacity: 0; transition: opacity .4s ease;
+    }
+    .summary:hover::after { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    /* entradas ao rolar (classe adicionada via JS: sem JS, nada some) */
+    .reveal { opacity: 0; transform: translateY(16px);
+      transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+  }
+
+  [hidden] { display: none !important; }
+  @media print {
+    .langbar, .cursor-glow { display: none; }
+    body { padding: 0; color: #000; }
+    a { color: #000; text-decoration: underline; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="langbar" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="pt" aria-pressed="true">Português</button>
+    <button type="button" data-lang="en" aria-pressed="false">English</button>
+  </div>
+
+  <!-- ============================ PORTUGUÊS ============================ -->
+  <section class="lang-pt">
+    <h1>Política de Privacidade — Nosso</h1>
+    <p class="updated">Última atualização: 2 de setembro de 2026</p>
+
+    <div class="summary">
+      <p><strong>Resumo.</strong> O <strong>Nosso</strong> é um app de finanças para casais.</p>
+      <p>Não tem anúncios. Não usa SDK de publicidade nem de analytics de terceiros. Não acessa
+        contas bancárias. Não vende nem compartilha seus dados. Os únicos dados que saem do seu
+        aparelho são os que sincronizam o espaço do casal entre os dois celulares.</p>
+    </div>
+
+    <h2>1. Quem é responsável pelos seus dados</h2>
+    <p>O controlador dos dados tratados pelo Nosso é
+      Jobs Consultoria em Tecnologia da Informação. Para qualquer assunto sobre esta
+      política ou sobre seus dados, o contato é
+      <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>,
+      que também é o canal do encarregado pelo tratamento de dados (DPO) para os fins da LGPD
+      (Lei nº 13.709/2018).</p>
+
+    <h2>2. O que o app coleta</h2>
+    <p><strong>Dados de finanças que você digita.</strong> Valor, categoria, quem pagou, forma
+      de divisão, nota opcional e data de cada gasto; os acertos entre o casal; e as regras de
+      contas fixas e compras parceladas que você criar. Ficam no seu aparelho e, se você
+      conectar um espaço de casal, também no nosso provedor de banco de dados para sincronizar
+      com o outro celular.</p>
+    <p><strong>Identificador anônimo do aparelho.</strong> Ao abrir o app pela primeira vez é
+      criada uma conta anônima (sem nome, sem e-mail, sem senha), só para ligar os dois
+      celulares do casal. É gerado um identificador aleatório, guardado no seu aparelho; não é
+      um identificador de hardware e não está ligado à sua identidade.</p>
+    <p><strong>Nomes de exibição.</strong> Os primeiros nomes que o casal escolhe ("quem sou
+      eu" e "meu par"), para mostrar de quem é cada gasto.</p>
+    <p><strong>E-mail de recuperação (opcional).</strong> Se — e só se — você escolher proteger
+      a conta com e-mail, guardamos esse e-mail para permitir recuperar o espaço do casal num
+      aparelho novo. Você pode não fornecer e-mail nenhum e o app funciona igual.</p>
+    <p><strong>Data da última abertura.</strong> Guardamos apenas a <strong>data</strong> (sem
+      horário) em que cada membro abriu o app pela última vez, para medir de forma agregada se
+      as pessoas continuam usando. Não há registro de telas, cliques ou eventos.</p>
+    <p><strong>Idioma do aparelho.</strong> O app lê a preferência de idioma do sistema
+      operacional para exibir a interface no idioma certo. Essa leitura acontece no aparelho e
+      não é enviada aos nossos servidores.</p>
+
+    <h2>3. Base legal do tratamento (LGPD)</h2>
+    <ul>
+      <li><strong>Execução do contrato / prestação do serviço</strong> (art. 7º, V): os dados
+        de finanças, o identificador anônimo e os nomes de exibição são necessários para o app
+        funcionar e sincronizar o espaço do casal.</li>
+      <li><strong>Legítimo interesse</strong> (art. 7º, IX): a data da última abertura, usada
+        de forma agregada para entender se o produto está sendo útil e priorizar melhorias.</li>
+      <li><strong>Consentimento</strong> (art. 7º, I): o e-mail de recuperação, fornecido só se
+        você optar por proteger a conta. Você pode revogar a qualquer momento removendo o
+        e-mail nas configurações ou solicitando por e-mail.</li>
+    </ul>
+
+    <h2>4. O que o app NÃO faz</h2>
+    <ul>
+      <li>Não acessa contas bancárias, cartões nem qualquer instituição financeira, e nunca
+        pede senha de banco.</li>
+      <li>Não usa publicidade nem rastreamento entre apps ou sites.</li>
+      <li>Não integra SDK de analytics de terceiros (Google Analytics, Firebase Analytics,
+        Meta, etc.).</li>
+      <li>Não coleta localização, contatos, agenda, fotos, microfone ou câmera.</li>
+      <li>Não vende, aluga nem compartilha seus dados com terceiros para marketing.</li>
+    </ul>
+
+    <h2>5. Onde os dados ficam e quem opera por nós</h2>
+    <p><strong>No seu aparelho:</strong> armazenamento local do app.</p>
+    <p><strong>Em servidores de terceiros que operam por nós</strong> (operadores, na linguagem
+      da LGPD), apenas quando você usa um espaço de casal sincronizado ou a recuperação por
+      e-mail:</p>
+    <ul>
+      <li><strong>Supabase</strong> — banco de dados e autenticação. Armazena os dados
+        sincronizados do casal, protegidos por regras de acesso que garantem que só os dois
+        membros daquele casal leem e escrevem aqueles dados.</li>
+      <li><strong>Resend</strong> — envio do e-mail com o código de verificação, usado somente
+        se você ativar a recuperação por e-mail.</li>
+      <li><strong>Apple App Store</strong> e <strong>Google Play</strong> — distribuição do
+        app e, no futuro, processamento de compras (ver seção 8).</li>
+    </ul>
+    <p><strong>Transferência internacional.</strong> Esses provedores podem processar e
+      armazenar dados em servidores fora do Brasil (por exemplo, nos Estados Unidos). Ao usar o
+      app você reconhece essa transferência, feita com base na execução do contrato e nas
+      salvaguardas contratuais desses provedores.</p>
+
+    <h2>6. Compartilhamento com o outro membro do casal</h2>
+    <p>Os dados do espaço são visíveis para <strong>o outro membro do casal</strong> — essa é a
+      função do app. Fora isso, não compartilhamos com ninguém, exceto quando exigido por lei
+      ou ordem judicial.</p>
+
+    <h2>7. Compartilhar texto para o app</h2>
+    <p>No Android e no iOS você pode "compartilhar" um texto de outro app para o Nosso (por
+      exemplo, o valor de um comprovante). Esse texto é processado <strong>no seu
+      aparelho</strong> apenas para tentar identificar um valor e pré-preencher a tela de novo
+      gasto. Ele não é enviado a lugar nenhum, a menos que vire um gasto que você salve.</p>
+
+    <h2>8. Compras e assinaturas (quando disponíveis)</h2>
+    <p>Hoje o app é gratuito. Quando planos pagos forem lançados, a compra e a cobrança serão
+      processadas pela Apple App Store ou pelo Google Play, conforme a loja. Poderemos usar um
+      provedor de gestão de assinaturas para validar a compra, recebendo um identificador de
+      transação e um identificador anônimo — nunca os dados do seu cartão. Esta política será
+      atualizada antes de qualquer cobrança.</p>
+
+    <h2>9. Notificações</h2>
+    <p>Se você ativar o resumo semanal, a notificação é agendada e exibida
+      <strong>localmente pelo seu aparelho</strong>. Não usamos servidor de push nem enviamos
+      o conteúdo do resumo para fora do aparelho.</p>
+
+    <h2>10. Retenção e exclusão</h2>
+    <ul>
+      <li><strong>Apagar tudo no aparelho:</strong> em Ajustes › "Recomeçar espaço", os dados
+        locais são apagados e a conta anônima é desvinculada.</li>
+      <li><strong>Exclusão no servidor:</strong> para apagar os dados sincronizados do casal
+        nos nossos provedores, escreva para
+        <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>.
+        Atendemos em até 30 dias.</li>
+      <li>Enquanto o espaço do casal existe, os dados ficam guardados para permitir a
+        sincronização entre os dois celulares.</li>
+    </ul>
+
+    <h2>11. Seus direitos</h2>
+    <p>Nos termos da LGPD, você pode solicitar: confirmação da existência de tratamento;
+      acesso aos dados; correção de dados incompletos ou desatualizados; anonimização, bloqueio
+      ou eliminação de dados desnecessários; portabilidade; informação sobre com quem
+      compartilhamos; e revogação do consentimento. Para exercer qualquer um, escreva para
+      <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>.
+      Você também pode apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD).</p>
+
+    <h2>12. Usuários fora do Brasil</h2>
+    <p>Se você estiver na União Europeia, no Reino Unido ou na Califórnia, você tem direitos
+      equivalentes sob o GDPR, o UK GDPR e o CCPA/CPRA (acesso, correção, exclusão, oposição e
+      portabilidade, entre outros). <strong>Não vendemos dados pessoais</strong> no sentido do
+      CCPA. Use o mesmo contato acima para exercer esses direitos.</p>
+
+    <h2>13. Crianças</h2>
+    <p>O app não é direcionado a menores de 13 anos e não coleta conscientemente dados dessa
+      faixa etária. Se você acredita que uma criança nos forneceu dados, entre em contato para
+      que sejam removidos.</p>
+
+    <h2>14. Segurança</h2>
+    <p>A comunicação com nossos provedores usa HTTPS. O acesso aos dados de um casal é limitado
+      por regras no servidor aos dois membros daquele casal. Não armazenamos senhas de banco,
+      números de cartão nem dados de instituições financeiras.</p>
+
+    <h2>15. Alterações nesta política</h2>
+    <p>Mudanças serão publicadas nesta mesma página, com a data de atualização revisada no
+      topo. Mudanças relevantes serão sinalizadas no app.</p>
+
+    <h2>16. Contato e lei aplicável</h2>
+    <p>Contato e encarregado (DPO):
+      <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>.</p>
+    <p>Esta política é regida pela lei brasileira. Fica eleito o foro da comarca de
+      São Paulo/SP para dirimir questões dela decorrentes,
+      sem prejuízo de direitos assegurados ao consumidor pela legislação aplicável.</p>
+
+    <footer>
+      Página publicada em https://appnosso.com/privacidade.html.
+    </footer>
+  </section>
+
+  <!-- ============================== ENGLISH ============================== -->
+  <section class="lang-en" hidden>
+    <h1>Privacy Policy — Nosso</h1>
+    <p class="updated">Last updated: September 2, 2026</p>
+
+    <div class="summary">
+      <p><strong>Summary.</strong> <strong>Nosso</strong> is a shared-finances app for couples.</p>
+      <p>No ads. No third-party advertising or analytics SDKs. No bank access. We do not sell or
+        share your data. The only data that leaves your device is what syncs the couple's space
+        between the two phones.</p>
+    </div>
+
+    <h2>1. Who is responsible for your data</h2>
+    <p>The controller of the data processed by Nosso is
+      Jobs Consultoria em Tecnologia da Informação. For anything about this policy or
+      your data, contact
+      <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>,
+      which is also the data protection contact (DPO) for the purposes of Brazil's LGPD
+      (Law 13.709/2018) and, where applicable, the GDPR.</p>
+
+    <h2>2. What the app collects</h2>
+    <p><strong>The finance data you enter.</strong> Amount, category, who paid, split, an
+      optional note and the date of each expense; settlements between the couple; and any
+      recurring-bill and installment rules you create. Stored on your device and, if you connect
+      a couple's space, also on our database provider to sync with the other phone.</p>
+    <p><strong>Anonymous device identifier.</strong> On first launch an anonymous account is
+      created (no name, no email, no password), solely to link the couple's two phones. A random
+      identifier is generated and stored on your device; it is not a hardware identifier and is
+      not tied to your identity.</p>
+    <p><strong>Display names.</strong> The first names the couple picks ("me" and "my
+      partner"), to show whose expense is whose.</p>
+    <p><strong>Recovery email (optional).</strong> If — and only if — you choose to protect the
+      account with an email, we store that email so you can recover the couple's space on a new
+      device. You can provide no email at all and the app works the same.</p>
+    <p><strong>Last-open date.</strong> We store only the <strong>date</strong> (no time) each
+      member last opened the app, to measure in aggregate whether people keep using it. There
+      is no screen, tap or event tracking.</p>
+    <p><strong>Device language.</strong> The app reads your operating system's language setting
+      to show the interface in the right language. This happens on the device and is not sent
+      to our servers.</p>
+
+    <h2>3. Legal basis for processing</h2>
+    <ul>
+      <li><strong>Performance of the service / contract:</strong> the finance data, the
+        anonymous identifier and the display names are needed for the app to work and sync the
+        couple's space.</li>
+      <li><strong>Legitimate interest:</strong> the last-open date, used in aggregate to
+        understand whether the product is useful and to prioritize improvements.</li>
+      <li><strong>Consent:</strong> the recovery email, provided only if you choose to protect
+        the account. You can withdraw it any time by removing the email in settings or asking
+        by email.</li>
+    </ul>
+
+    <h2>4. What the app does NOT do</h2>
+    <ul>
+      <li>Does not access bank accounts, cards or any financial institution, and never asks for
+        a banking password.</li>
+      <li>Does not use advertising or cross-app / cross-site tracking.</li>
+      <li>Does not embed third-party analytics SDKs (Google Analytics, Firebase Analytics,
+        Meta, etc.).</li>
+      <li>Does not collect location, contacts, calendar, photos, microphone or camera.</li>
+      <li>Does not sell, rent or share your data with third parties for marketing.</li>
+    </ul>
+
+    <h2>5. Where data lives and who processes it for us</h2>
+    <p><strong>On your device:</strong> the app's local storage.</p>
+    <p><strong>On third-party services acting as our processors</strong>, only when you use a
+      synced couple's space or email recovery:</p>
+    <ul>
+      <li><strong>Supabase</strong> — database and authentication. Stores the couple's synced
+        data, protected by access rules that ensure only the two members of that couple can
+        read and write it.</li>
+      <li><strong>Resend</strong> — sends the verification-code email, used only if you enable
+        email recovery.</li>
+      <li><strong>Apple App Store</strong> and <strong>Google Play</strong> — app distribution
+        and, in the future, purchase processing (see section 8).</li>
+    </ul>
+    <p><strong>International transfer.</strong> These providers may process and store data on
+      servers outside Brazil (for example, in the United States). By using the app you
+      acknowledge this transfer, made on the basis of performing the service and the providers'
+      contractual safeguards.</p>
+
+    <h2>6. Sharing with the other member of the couple</h2>
+    <p>The space's data is visible to <strong>the other member of the couple</strong> — that is
+      the app's purpose. Otherwise we do not share it with anyone, except where required by law
+      or court order.</p>
+
+    <h2>7. Sharing text into the app</h2>
+    <p>On Android and iOS you can "share" text from another app into Nosso (for example, an
+      amount from a receipt). That text is processed <strong>on your device</strong> only to
+      try to detect an amount and pre-fill the new-expense screen. It is not sent anywhere
+      unless it becomes an expense you save.</p>
+
+    <h2>8. Purchases and subscriptions (when available)</h2>
+    <p>The app is currently free. When paid plans launch, purchase and billing will be handled
+      by the Apple App Store or Google Play, depending on the store. We may use a subscription
+      management provider to validate the purchase, receiving a transaction identifier and an
+      anonymous identifier — never your card details. This policy will be updated before any
+      charge.</p>
+
+    <h2>9. Notifications</h2>
+    <p>If you enable the weekly summary, the notification is scheduled and shown
+      <strong>locally by your device</strong>. We use no push server and the summary content
+      never leaves the device.</p>
+
+    <h2>10. Retention and deletion</h2>
+    <ul>
+      <li><strong>Erase everything on the device:</strong> in Settings › "Start over", local
+        data is erased and the anonymous account is unlinked.</li>
+      <li><strong>Server-side deletion:</strong> to delete the couple's synced data on our
+        providers, write to
+        <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>.
+        We respond within 30 days.</li>
+      <li>While the couple's space exists, data is kept to allow syncing between the two
+        phones.</li>
+    </ul>
+
+    <h2>11. Your rights</h2>
+    <p>Under the LGPD you can request: confirmation that processing exists; access to your
+      data; correction of incomplete or outdated data; anonymization, blocking or deletion of
+      unnecessary data; portability; information about who we share with; and withdrawal of
+      consent. To exercise any of these, write to
+      <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>.
+      You may also complain to Brazil's Data Protection Authority (ANPD).</p>
+
+    <h2>12. Users outside Brazil</h2>
+    <p>If you are in the European Union, the United Kingdom or California, you have equivalent
+      rights under the GDPR, the UK GDPR and the CCPA/CPRA (access, correction, deletion,
+      objection and portability, among others). <strong>We do not sell personal
+      information</strong> within the meaning of the CCPA. Use the same contact above.</p>
+
+    <h2>13. Children</h2>
+    <p>The app is not directed to children under 13 and does not knowingly collect their data.
+      If you believe a child has provided us data, contact us so we can remove it.</p>
+
+    <h2>14. Security</h2>
+    <p>Communication with our providers uses HTTPS. Access to a couple's data is limited by
+      server-side rules to that couple's two members. We do not store banking passwords, card
+      numbers or financial-institution data.</p>
+
+    <h2>15. Changes to this policy</h2>
+    <p>Changes will be posted on this same page, with the "last updated" date revised at the
+      top. Material changes will be signaled in the app.</p>
+
+    <h2>16. Contact and governing law</h2>
+    <p>Contact and data protection contact (DPO):
+      <a href="mailto:jobs.tecnologia.consultoria@gmail.com">jobs.tecnologia.consultoria@gmail.com</a>.</p>
+    <p>This policy is governed by the laws of Brazil, with the courts of
+      São Paulo/SP as the venue, without prejudice to
+      consumer rights under applicable law.</p>
+
+    <footer>
+      Page published at https://appnosso.com/privacidade.html.
+    </footer>
+  </section>
+</main>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.langbar button');
+    var pt = document.querySelector('.lang-pt');
+    var en = document.querySelector('.lang-en');
+
+    function apply(lang) {
+      var isEn = lang === 'en';
+      en.hidden = !isEn;
+      pt.hidden = isEn;
+      document.documentElement.lang = isEn ? 'en' : 'pt-BR';
+      document.title = isEn ? 'Privacy Policy — Nosso' : 'Política de Privacidade — Nosso';
+      buttons.forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.lang === lang));
+      });
+      try { localStorage.setItem('nosso-privacy-lang', lang); } catch (e) {}
+    }
+
+    var initial = 'pt';
+    try {
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'en' || q === 'pt') initial = q;
+      else {
+        var saved = localStorage.getItem('nosso-privacy-lang');
+        if (saved === 'en' || saved === 'pt') initial = saved;
+        else if ((navigator.language || '').toLowerCase().indexOf('pt') !== 0) initial = 'en';
+      }
+    } catch (e) {}
+
+    buttons.forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.dataset.lang); });
+    });
+    apply(initial);
+  })();
+</script>
+
+<script>
+/* motion: entradas ao rolar + holofote seguindo o cursor */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches) return;
+
+  var sel = 'main h1, main .updated, .summary, main h2, main h3, main footer';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+  targets.forEach(function (el) { el.classList.add('reveal'); });
+
+  var sweep = function () {
+    targets.forEach(function (el) {
+      if (el.classList.contains('in')) return;
+      if (!el.getClientRects().length) return;                 // escondido (outro idioma)
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('in');
+    });
+  };
+  var scheduled = false;
+  var onScroll = function () {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(function () { scheduled = false; sweep(); });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.querySelectorAll('.langbar button').forEach(function (b) {
+    b.addEventListener('click', function () { requestAnimationFrame(sweep); });
+  });
+  sweep();
+
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    var summaries = [].slice.call(document.querySelectorAll('.summary'));
+    var queued = false, cx = 0, cy = 0;
+    var paint = function () {
+      queued = false;
+      document.body.style.setProperty('--gx', cx + 'px');
+      document.body.style.setProperty('--gy', cy + 'px');
+      summaries.forEach(function (el) {
+        if (!el.matches(':hover')) return;
+        var r = el.getBoundingClientRect();
+        el.style.setProperty('--mx', (cx - r.left) + 'px');
+        el.style.setProperty('--my', (cy - r.top) + 'px');
+      });
+    };
+    window.addEventListener('pointermove', function (e) {
+      cx = e.clientX; cy = e.clientY;
+      document.body.classList.add('cursor-active');
+      if (!queued) { queued = true; requestAnimationFrame(paint); }
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () {
+      document.body.classList.remove('cursor-active');
+    });
+  }
+})();
+</script>
+</body>
+</html>

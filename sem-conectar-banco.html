@@ -1,0 +1,395 @@
+<!doctype html>
+<!--
+  Guia SEO/AEO "app de finanças para casal sem conectar banco" — estático, para site/.
+
+  Botões de download -> https://appnosso.com (troque pelos links reais das lojas quando existirem).
+  privacidade -> ./privacidade.html · contato -> jobs.tecnologia.consultoria@gmail.com
+
+  Página de guia honesta: cita alternativas reais (Goodbudget, Actual Budget) porque isso
+  ranqueia e constrói confiança — e deixa claro que, para casal, o Nosso é a escolha.
+  Dados sobre outros apps vêm de fontes públicas e podem mudar.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<title>App de finanças para casal sem conectar banco — o guia</title>
+<meta name="description" content="Por que casais estão fugindo dos apps que conectam banco, quais são as opções que não exigem conexão bancária, e qual faz mais sentido para um casal.">
+<meta property="og:title" content="App de finanças para casal sem conectar banco">
+<meta property="og:description" content="As opções que não conectam banco — e qual escolher se o foco é o casal.">
+<meta property="og:type" content="article">
+<style>
+  :root{
+    --bg:#0E1116; --surface:#171B22; --surface-2:#1F242D; --rule:#2A313C;
+    --fg:#F2F4F7; --dim:#9AA4B2; --faint:#6B7480;
+    --accent:#F2A65A; --accent-ink:#1A1206; --mint:#5FD6A6; --coral:#F2708A;
+    --maxw:52rem;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{line-height:1.22; margin:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 1.25rem}
+  .placeholder{color:var(--accent); font-weight:600}
+
+  header{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
+  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--maxw); margin:0 auto}
+  .brand{display:flex; align-items:center; gap:.55rem; font-weight:700}
+  .brand .mark{width:22px; height:22px; flex:0 0 auto}
+  nav .spacer{flex:1}
+  .langbar{display:flex; gap:.35rem}
+  .langbar button{font:inherit; font-size:.8rem; padding:.25rem .6rem; border-radius:999px;
+    border:1px solid var(--rule); background:transparent; color:var(--dim); cursor:pointer}
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .btn{display:inline-flex; align-items:center; gap:.5rem; justify-content:center;
+    padding:.55rem .95rem; border-radius:11px; font-weight:600; font-size:.9rem;
+    border:1px solid var(--rule); color:var(--fg); background:var(--surface-2)}
+  .btn.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+  .btn.small{padding:.4rem .8rem; font-size:.82rem}
+
+  main{padding:2.5rem 0 1rem}
+  .kicker{color:var(--faint); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.5rem}
+  h1{font-size:2rem; letter-spacing:-.01em}
+  .updated{color:var(--faint); font-size:.85rem; margin-top:.5rem}
+  .lead{font-size:1.1rem; color:var(--dim); margin:1.25rem 0}
+  .tldr{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.15rem 1.25rem; margin:1.5rem 0 2.25rem}
+  .tldr strong{color:var(--fg)}
+
+  section{padding:2rem 0; border-top:1px solid var(--rule); margin-top:1.5rem}
+  section h2{font-size:1.35rem; margin-bottom:.9rem}
+  p{margin:.7rem 0}
+  ul{margin:.7rem 0; padding-left:1.2rem}
+  li{margin:.4rem 0}
+
+  .opt{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.1rem 1.2rem; margin:.9rem 0}
+  .opt h3{font-size:1.05rem; margin-bottom:.15rem}
+  .opt .tag{font-size:.78rem; color:var(--faint)}
+  .opt.pick{border-color:var(--accent)}
+  .opt.pick h3::after{content:" — recomendado para casal"; color:var(--accent); font-size:.8rem; font-weight:600}
+  .opt p{margin:.5rem 0 0; color:var(--dim); font-size:.95rem}
+
+  .quote{border-left:2px solid var(--rule); padding:.2rem 0 .2rem 1rem; margin:.9rem 0; color:var(--dim); font-style:italic}
+  .quote cite{display:block; font-style:normal; font-size:.8rem; color:var(--faint); margin-top:.3rem}
+
+  .cta{background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:1.5rem; text-align:center; margin-top:2rem}
+  .cta .btn{margin:.3rem}
+
+  footer{padding:2.5rem 0 3rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.85rem; margin-top:2rem}
+  footer .wrap{display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
+  footer a{color:var(--dim)}
+  footer .disclaimer{flex-basis:100%; color:var(--faint); font-size:.78rem; margin-top:.5rem}
+
+  /* ---------- motion & vida ---------- */
+  .btn,.langbar button,.opt{
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), background-color .2s ease,
+               border-color .2s ease, box-shadow .25s ease, color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.985)}
+  .btn.primary:hover{box-shadow:0 12px 30px -10px rgba(242,166,90,.55)}
+  .langbar button:hover{color:var(--fg); border-color:var(--faint)}
+  .opt:hover{transform:translateY(-3px); border-color:#3a4350}
+  .opt.pick:hover{border-color:var(--accent)}
+
+  header{transition:box-shadow .3s ease, background-color .3s ease}
+  header.scrolled{box-shadow:0 12px 34px -14px rgba(0,0,0,.6)}
+
+  /* holofote: uma luz âmbar acompanha o cursor pela página inteira (sensação de relevo) */
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+    .cursor-glow{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      opacity:0; transition:opacity .5s ease;
+      background:radial-gradient(600px circle at var(--gx,50%) var(--gy,-20%),
+        rgba(242,166,90,.12), transparent 60%);
+    }
+    body.cursor-active .cursor-glow{opacity:1}
+
+    /* foco mais forte no card sob o cursor */
+    .opt{position:relative}
+    .opt h3,.opt p{position:relative; z-index:1}
+    .opt::after{
+      content:""; position:absolute; inset:0; z-index:0; pointer-events:none; border-radius:inherit;
+      background:radial-gradient(200px circle at var(--mx,-300px) var(--my,-300px),
+        rgba(242,166,90,.12), transparent 60%);
+      opacity:0; transition:opacity .4s ease;
+    }
+    .opt:hover::after{opacity:1}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    /* entradas ao rolar (classe adicionada via JS: sem JS, nada some) */
+    .reveal{opacity:0; transform:translateY(22px);
+      transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+  }
+
+  [hidden]{display:none !important}
+  @media (max-width:640px){ h1{font-size:1.6rem} }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="./index.html">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </a>
+    <span class="spacer"></span>
+    <div class="langbar" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn small primary" href="#baixar" data-i18n="nav.cta">Baixar</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <p class="kicker" data-i18n="kicker">Guia</p>
+  <h1 data-i18n="h1">App de finanças para casal sem conectar banco</h1>
+  <p class="updated" data-i18n="updated">Atualizado em <span class="placeholder">setembro de 2026</span>.</p>
+
+  <p class="lead" data-i18n="lead">
+    A maioria dos apps de finanças para casais pede pra você <strong>conectar a conta
+    bancária</strong>. É prático quando funciona — mas essa conexão é justamente o que mais
+    quebra, e nem todo casal quer o próprio dinheiro dentro de um app que importa tudo
+    automaticamente. Este guia lista as opções que <strong>não conectam banco</strong> e diz
+    qual faz mais sentido se o foco é o casal.
+  </p>
+
+  <div class="tldr" data-i18n="tldr">
+    <strong>Resumo:</strong> se você quer um app <strong>feito para casal</strong> (quem deve a
+    quem, acerto de contas, os dois no mesmo painel) sem conexão bancária, o
+    <strong>Nosso</strong> é a opção mais direta. <strong>Goodbudget</strong> serve se você
+    curte o método de envelopes; <strong>Actual Budget</strong> se você não se importa de
+    hospedar você mesmo. Nenhum dos dois foi desenhado para o caso "casal".
+  </div>
+
+  <section>
+    <h2 data-i18n="why.h2">Por que fugir da conexão bancária</h2>
+    <ul>
+      <li data-i18n="why.l1"><strong>É o que mais quebra.</strong> Reviews de apps como Monarch e Honeydue estão cheias de "a conexão cai a cada 3-4 semanas e tenho que reconectar".</li>
+      <li data-i18n="why.l2"><strong>Transações duplicadas ou com sinal trocado.</strong> Quando a importação falha, o número do mês fica errado — e alguns apps chamam isso de "comportamento esperado".</li>
+      <li data-i18n="why.l3"><strong>Cobertura fraca fora dos EUA.</strong> A maioria só conecta bem bancos americanos.</li>
+      <li data-i18n="why.l4"><strong>Privacidade.</strong> Dar acesso de leitura a todas as suas transações é muita superfície — ainda mais quando o app é de uma empresa de crédito.</li>
+    </ul>
+    <p data-i18n="why.p">Lançar o gasto na mão parece mais trabalho, mas na prática são 3 segundos por gasto — e nada nunca "desconecta".</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="opts.h2">As opções que não conectam banco</h2>
+
+    <div class="opt pick">
+      <h3>Nosso</h3>
+      <p class="tag" data-i18n="opts.nosso.tag">Grátis · iOS + Android · PT / EN / ES</p>
+      <p data-i18n="opts.nosso.p">Feito só para o caso "casal": um cria o espaço, o outro entra com um código de 6 letras (sem criar conta). Lançamento em uma tela, ou compartilhando o valor de outro app. Mostra sempre <strong>quem deve a quem</strong> e tem acerto de contas, contas fixas e compras parceladas. Sem anúncios, sem SDK de analytics de terceiros, exporta tudo em CSV de graça.</p>
+    </div>
+
+    <div class="opt">
+      <h3>Goodbudget</h3>
+      <p class="tag" data-i18n="opts.gb.tag">Freemium · iOS + Android + web</p>
+      <p data-i18n="opts.gb.p">Método de envelopes, 100% entrada manual, sincroniza entre vários dispositivos e pessoas. Bom se você já pensa em orçamento por envelope. A versão grátis limita o número de envelopes; o plano pago fica em torno de US$ 80/ano. Não tem o conceito de "quem deve a quem" entre duas pessoas.</p>
+    </div>
+
+    <div class="opt">
+      <h3>Actual Budget</h3>
+      <p class="tag" data-i18n="opts.actual.tag">Open source · self-host · grátis</p>
+      <p data-i18n="opts.actual.p">Orçamento zero-based, código aberto, roda no seu servidor ou numa hospedagem gerenciada paga. Exporta tudo, ninguém trava seus dados. O custo é técnico: é desktop-first e exige que você cuide da hospedagem. Não é um app de casal.</p>
+    </div>
+
+    <div class="opt">
+      <h3 data-i18n="opts.priv.h">Apps "privacy-first" novos</h3>
+      <p class="tag" data-i18n="opts.priv.tag">Entrantes 2026</p>
+      <p data-i18n="opts.priv.p">Surgiram apps que usam "sem conexão bancária" como posicionamento (categorização por IA, sem pedir credencial). Quase todos focam em usuário único, não em casal — vale acompanhar, mas hoje não resolvem o "nosso".</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="couple.h2">Qual escolher se o foco é o casal</h2>
+    <p data-i18n="couple.p">Goodbudget e Actual Budget são apps de orçamento pessoal que <em>também</em> dá pra usar a dois. O Nosso é o contrário: foi desenhado a partir da pergunta "como é que a gente divide a conta de luz sem brigar". Na prática isso significa:</p>
+    <ul>
+      <li data-i18n="couple.l1"><strong>Rateio meu / seu / nosso</strong> em cada gasto — ou em valores exatos ("eu pago R$ 40, você o resto").</li>
+      <li data-i18n="couple.l2"><strong>"Quem deve a quem"</strong> sempre visível na tela inicial, recalculado a cada gasto.</li>
+      <li data-i18n="couple.l3"><strong>Acerto de contas</strong> com um toque, total ou parcial, com histórico.</li>
+      <li data-i18n="couple.l4"><strong>Onboarding sem atrito</strong> — o segundo parceiro não preenche cadastro nenhum.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 data-i18n="auto.h2">E se eu quiser importação automática mesmo assim?</h2>
+    <p data-i18n="auto.p">Aí a escolha volta pros apps que conectam banco — Monarch, YNAB, Honeydue. Só entre nisso sabendo que a reconexão de conta e as transações duplicadas são as reclamações número 1 e 2 desses apps, e que quase todos são caros (US$ 100+/ano) ou focados em bancos dos EUA. Se a importação automática não for inegociável pra você, testar um app manual por um mês costuma surpreender.</p>
+  </section>
+
+  <div class="cta" id="baixar">
+    <h2 data-i18n="cta.h" style="border:none; padding:0; margin-bottom:.4rem">Experimente o Nosso</h2>
+    <p data-i18n="cta.p" style="color:var(--dim); margin-top:0">Grátis. Dois minutos pra configurar. Nenhum banco, nenhum cartão.</p>
+    <a class="btn primary" href="https://appnosso.com">App Store</a>
+    <a class="btn" href="https://appnosso.com">Google Play</a>
+    <p style="margin-top:.8rem">
+      <a href="./vs-honeydue.html" data-i18n="cta.l1">Nosso vs Honeydue</a> ·
+      <a href="./alternativa-ao-monarch.html" data-i18n="cta.l2">Alternativa ao Monarch</a> ·
+      <a href="./index.html" data-i18n="cta.back">Página inicial</a>
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </span>
+    <span class="spacer" style="flex:1"></span>
+    <a href="./privacidade.html" data-i18n="foot.privacy">Política de privacidade</a>
+    <a href="mailto:jobs.tecnologia.consultoria@gmail.com" data-i18n="foot.contact">Contato</a>
+    <p class="disclaimer" data-i18n="foot.disc">Nomes de outros apps são marcas de seus respectivos donos e não têm vínculo com o Nosso. As informações vêm de fontes públicas (lojas, imprensa, avaliações) e podem mudar. Avise por <a href="mailto:jobs.tecnologia.consultoria@gmail.com">e-mail</a> se algo estiver desatualizado.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var EN = {
+    "nav.cta":"Get the app",
+    "kicker":"Guide",
+    "h1":"Couples finance app without a bank connection",
+    "updated":"Updated <span class=\"placeholder\">September 2026</span>.",
+    "lead":"Most couples finance apps ask you to <strong>connect your bank account</strong>. It's convenient when it works — but that connection is exactly what breaks most, and not every couple wants their money inside an app that imports everything automatically. This guide lists the options that <strong>don't connect a bank</strong> and says which makes the most sense for a couple.",
+    "tldr":"<strong>Summary:</strong> if you want an app <strong>built for a couple</strong> (who owes whom, settling up, both on the same panel) without a bank connection, <strong>Nosso</strong> is the most direct option. <strong>Goodbudget</strong> fits if you like the envelope method; <strong>Actual Budget</strong> if you don't mind self-hosting. Neither was designed for the \"couple\" case.",
+    "why.h2":"Why avoid the bank connection",
+    "why.l1":"<strong>It's what breaks most.</strong> Reviews of apps like Monarch and Honeydue are full of \"the connection drops every 3-4 weeks and I have to reconnect\".",
+    "why.l2":"<strong>Duplicate or wrong-sign transactions.</strong> When import fails, the month's number is wrong — and some apps call that \"expected behaviour\".",
+    "why.l3":"<strong>Weak coverage outside the US.</strong> Most only connect US banks well.",
+    "why.l4":"<strong>Privacy.</strong> Giving read access to all your transactions is a lot of surface — especially when the app belongs to a lending company.",
+    "why.p":"Logging by hand sounds like more work, but in practice it's 3 seconds per expense — and nothing ever \"disconnects\".",
+    "opts.h2":"The options that don't connect a bank",
+    "opts.nosso.tag":"Free · iOS + Android · PT / EN / ES",
+    "opts.nosso.p":"Built only for the \"couple\" case: one person creates the space, the other joins with a 6-letter code (no account). Log on one screen, or by sharing an amount from another app. Always shows <strong>who owes whom</strong> and has settle-up, recurring bills and installment purchases. No ads, no third-party analytics SDK, exports everything to CSV for free.",
+    "opts.gb.tag":"Freemium · iOS + Android + web",
+    "opts.gb.p":"Envelope method, 100% manual entry, syncs across several devices and people. Good if you already think in envelope budgets. The free version limits the number of envelopes; the paid plan is around US$ 80/year. It has no concept of \"who owes whom\" between two people.",
+    "opts.actual.tag":"Open source · self-host · free",
+    "opts.actual.p":"Zero-based budgeting, open source, runs on your own server or a paid managed host. Exports everything, nobody locks your data. The cost is technical: it's desktop-first and you have to handle the hosting. It's not a couples app.",
+    "opts.priv.h":"New \"privacy-first\" apps",
+    "opts.priv.tag":"2026 entrants",
+    "opts.priv.p":"Apps have appeared using \"no bank connection\" as positioning (AI categorization, no credentials asked). Almost all focus on a single user, not a couple — worth watching, but they don't solve \"ours\" today.",
+    "couple.h2":"Which to choose if the focus is the couple",
+    "couple.p":"Goodbudget and Actual Budget are personal budgeting apps that you <em>can also</em> use as two. Nosso is the opposite: it was designed from the question \"how do we split the electricity bill without fighting\". In practice that means:",
+    "couple.l1":"<strong>Split mine / yours / ours</strong> on each expense — or by exact amounts (\"I pay R$ 40, you the rest\").",
+    "couple.l2":"<strong>\"Who owes whom\"</strong> always visible on the home screen, recalculated on every expense.",
+    "couple.l3":"<strong>Settle up</strong> with one tap, full or partial, with history.",
+    "couple.l4":"<strong>Frictionless onboarding</strong> — the second partner fills in no sign-up form.",
+    "auto.h2":"What if I still want automatic import?",
+    "auto.p":"Then the choice goes back to the apps that connect a bank — Monarch, YNAB, Honeydue. Just go in knowing that account reconnection and duplicate transactions are the #1 and #2 complaints about those apps, and that almost all are expensive (US$ 100+/year) or US-bank focused. If automatic import isn't a dealbreaker for you, trying a manual app for a month is often a surprise.",
+    "cta.h":"Try Nosso",
+    "cta.p":"Free. Two minutes to set up. No bank, no card.",
+    "cta.l1":"Nosso vs Honeydue","cta.l2":"Monarch alternative","cta.back":"Home",
+    "foot.privacy":"Privacy policy","foot.contact":"Contact",
+    "foot.disc":"Other app names are trademarks of their respective owners and have no affiliation with Nosso. Information comes from public sources (stores, press, reviews) and may change. Let us know by <a href=\"mailto:jobs.tecnologia.consultoria@gmail.com\">email</a> if something is out of date."
+  };
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var PT = {}; nodes.forEach(function(n){ PT[n.dataset.i18n] = n.innerHTML; });
+  var buttons = document.querySelectorAll('.langbar button');
+  function apply(lang){
+    var d = lang === 'en' ? EN : PT;
+    nodes.forEach(function(n){ var v = d[n.dataset.i18n]; if (v != null) n.innerHTML = v; });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = lang === 'en'
+      ? "Couples finance app without a bank connection — the guide"
+      : "App de finanças para casal sem conectar banco — o guia";
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('nosso-lang', lang); } catch(e){}
+  }
+  var initial = 'pt';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'pt') initial = q;
+    else { var s = localStorage.getItem('nosso-lang');
+      if (s === 'en' || s === 'pt') initial = s;
+      else if ((navigator.language||'').toLowerCase().indexOf('pt') !== 0) initial = 'en'; }
+  } catch(e){}
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
+  if (initial === 'en') apply('en');
+})();
+</script>
+
+<script>
+/* motion: sombra na nav ao rolar, entradas ao aparecer, holofote seguindo o cursor */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var header = document.querySelector('header');
+  var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  if (reduce.matches || !('IntersectionObserver' in window)) return;
+
+  var sel = '.kicker, h1, .updated, .lead, .tldr, section h2, section > p, section ul, '
+          + '.opt, .cta';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+  targets.forEach(function(el){
+    el.classList.add('reveal');
+    var sibs = el.parentElement
+      ? [].slice.call(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); })
+      : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 0.06, 0.3) + 's';
+  });
+
+  var sweep = function(){
+    var remaining = 0;
+    targets.forEach(function(el){
+      if (el.classList.contains('in')) return;
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('in');
+      else remaining++;
+    });
+    if (!remaining) window.removeEventListener('scroll', sweep);
+  };
+  window.addEventListener('scroll', sweep, {passive:true});
+  sweep();
+
+  /* holofote: luz âmbar seguindo o cursor pela página + foco no card sob ele */
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+
+    var spots = [].slice.call(document.querySelectorAll('.opt'));
+    var queued = false, cx = 0, cy = 0, hovNode = null;
+    var paint = function(){
+      queued = false;
+      document.body.style.setProperty('--gx', cx + 'px');
+      document.body.style.setProperty('--gy', cy + 'px');
+      if (hovNode){
+        var r = hovNode.getBoundingClientRect();
+        hovNode.style.setProperty('--mx', (cx - r.left) + 'px');
+        hovNode.style.setProperty('--my', (cy - r.top) + 'px');
+      }
+    };
+    window.addEventListener('pointermove', function(e){
+      cx = e.clientX; cy = e.clientY;
+      document.body.classList.add('cursor-active');
+      if (!queued){ queued = true; requestAnimationFrame(paint); }
+    }, {passive:true});
+    document.documentElement.addEventListener('mouseleave', function(){
+      document.body.classList.remove('cursor-active');
+    });
+    spots.forEach(function(el){
+      el.addEventListener('pointerenter', function(){ hovNode = el; });
+      el.addEventListener('pointerleave', function(){ if (hovNode === el) hovNode = null; });
+    });
+  }
+})();
+</script>
+</body>
+</html>
