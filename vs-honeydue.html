@@ -159,7 +159,7 @@
       <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
         <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
         <circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
-        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+        <path d="M20 10.2a11 11 0 0 1 0 19.6 11 11 0 0 1 0-19.6Z" fill="#F2A65A"/>
       </svg>
       Nosso
     </a>
@@ -341,7 +341,7 @@
     <span class="brand">
       <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
         <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
-        <path d="M25 11a11 11 0 0 1 0 18 11 11 0 0 1 0-18Z" fill="#F2A65A"/>
+        <path d="M20 10.2a11 11 0 0 1 0 19.6 11 11 0 0 1 0-19.6Z" fill="#F2A65A"/>
       </svg>
       Nosso
     </span>
@@ -434,8 +434,7 @@
     var q = new URLSearchParams(location.search).get('lang');
     if (q === 'en' || q === 'pt') initial = q;
     else { var s = localStorage.getItem('nosso-lang');
-      if (s === 'en' || s === 'pt') initial = s;
-      else if ((navigator.language||'').toLowerCase().indexOf('pt') !== 0) initial = 'en'; }
+      if (s === 'en' || s === 'pt') initial = s; }
   } catch(e){}
   buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
   if (initial === 'en') apply('en');

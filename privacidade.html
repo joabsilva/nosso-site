@@ -475,7 +475,6 @@
       else {
         var saved = localStorage.getItem('nosso-privacy-lang');
         if (saved === 'en' || saved === 'pt') initial = saved;
-        else if ((navigator.language || '').toLowerCase().indexOf('pt') !== 0) initial = 'en';
       }
     } catch (e) {}
 
