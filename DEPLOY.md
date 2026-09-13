@@ -58,16 +58,16 @@ Esta pasta é um repositório git próprio. Coloque-a no servidor de um destes j
 + `git push -u origin main` aqui):
 
 ```bash
-git clone <url-do-repo> /opt/site-appnosso
-cd /opt/site-appnosso && docker compose up -d --build
+git clone <url-do-repo> /opt/nosso-site
+cd /opt/nosso-site && docker compose up -d --build
 ```
 
 **Sem remote, via rsync/scp** (`SEU_SERVIDOR` = o que você usa no `ssh`):
 
 ```bash
-rsync -avz nosso/site/ root@SEU_SERVIDOR:/opt/site-appnosso/
-# ou:  scp -r nosso/site root@SEU_SERVIDOR:/opt/site-appnosso
-cd /opt/site-appnosso && docker compose up -d --build   # no servidor
+rsync -avz nosso/site/ root@SEU_SERVIDOR:/opt/nosso-site/
+# ou:  scp -r nosso/site root@SEU_SERVIDOR:/opt/nosso-site
+cd /opt/nosso-site && docker compose up -d --build   # no servidor
 ```
 
 Na primeira vez o Caddy leva alguns segundos pedindo o certificado. Acompanhe:
@@ -106,7 +106,7 @@ Deve dizer `issuer= ... Let's Encrypt`.
 Editou algum `.html`? Commit + push aqui, e no servidor:
 
 ```bash
-cd /opt/site-appnosso && git pull && docker compose up -d --build
+cd /opt/nosso-site && git pull && docker compose up -d --build
 ```
 
 Sem remote git, reenvie por `rsync`/`scp` (passo 3) e rode o `up -d --build`.

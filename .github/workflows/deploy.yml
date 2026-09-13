@@ -13,7 +13,7 @@ name: Deploy site
 # Do lado do servidor, a chave pública correspondente deve estar em
 # ~/.ssh/authorized_keys do usuário de deploy, de preferência com forced
 # command pra essa chave não conseguir fazer nada além do deploy:
-#   command="cd /opt/site-appnosso && git pull && docker compose up -d --build",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAA...
+#   command="cd /opt/nosso-site && git pull && docker compose up -d --build",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAA...
 
 on:
   push:
@@ -41,4 +41,4 @@ jobs:
           ssh -i ~/.ssh/deploy_key -p "${{ secrets.SSH_PORT || '22' }}" \
             -o StrictHostKeyChecking=yes \
             "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
-            "cd /opt/site-appnosso && git pull && docker compose up -d --build"
+            "cd /opt/nosso-site && git pull && docker compose up -d --build"
