@@ -1,0 +1,44 @@
+name: Deploy site
+
+# Roda o deploy no servidor a cada push na main, ou manualmente pela aba Actions.
+# Não faz checkout do código aqui — quem baixa o código novo é o próprio servidor
+# (`git pull`), via SSH. A chave privada nunca sai dos secrets do GitHub.
+#
+# Secrets necessários (Settings -> Secrets and variables -> Actions):
+#   SSH_HOST         host ou IP do servidor (ex: bot-sinais ou 203.0.113.10)
+#   SSH_USER         usuário de deploy (não usar root nem conta pessoal)
+#   SSH_PRIVATE_KEY  chave privada ed25519 dedicada a este deploy
+#   SSH_PORT         opcional, porta SSH (default 22)
+#
+# Do lado do servidor, a chave pública correspondente deve estar em
+# ~/.ssh/authorized_keys do usuário de deploy, de preferência com forced
+# command pra essa chave não conseguir fazer nada além do deploy:
+#   command="cd /opt/site-appnosso && git pull && docker compose up -d --build",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty ssh-ed25519 AAAA...
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configura a chave SSH e confia no host
+        run: |
+          mkdir -p ~/.ssh
+          umask 077
+          printf '%s\n' "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${{ secrets.SSH_PORT || '22' }}" -H "${{ secrets.SSH_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: git pull + docker compose up -d --build no servidor
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "${{ secrets.SSH_PORT || '22' }}" \
+            -o StrictHostKeyChecking=yes \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
+            "cd /opt/site-appnosso && git pull && docker compose up -d --build"
