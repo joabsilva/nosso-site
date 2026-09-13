@@ -9,3 +9,4 @@ RUN caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
 
 # Só o conteúdo entra na imagem — Dockerfile/Caddyfile/compose/DEPLOY.md ficam de fora.
 COPY *.html favicon.svg /srv/
+COPY img/ /srv/img/

@@ -1,0 +1,496 @@
+<!doctype html>
+<!--
+  Página "Como usar o Nosso" — guia ilustrado com prints reais do app, estática, para
+  hospedar em site/. Prints em ./img/como-usar/ (mesmos do docs/how-to-use.md no repo do
+  app, tirados em 2026-09-13 rodando o app localmente em modo web + Playwright).
+
+  Beta: botão do iPhone -> TestFlight; botão do Android -> formulário (forms.gle) pra
+  entrar na lista. Troque pelos links reais das lojas quando o app sair do beta.
+  Privacidade -> ./privacidade.html. Contato -> contato@appnosso.com.
+
+  Preço/disponibilidade do Pro nesta página são resumidos de propósito (não citar número
+  de preço aqui) — a fonte de verdade fica em nosso/docs/beta-invite.md e project-state.md,
+  que mudam toda semana nessa fase. O texto da FAQ do index.html é onde o preço aparece.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0E1116">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>Como usar o Nosso — guia passo a passo com prints</title>
+<meta name="description" content="Guia ilustrado do app Nosso: crie o espaço do casal, lance um gasto, veja quem deve a quem e acerte as contas. Passo a passo com prints reais do app.">
+<meta property="og:title" content="Como usar o Nosso">
+<meta property="og:description" content="Guia ilustrado, passo a passo, com prints reais do app.">
+<meta property="og:type" content="article">
+<style>
+  :root{
+    --bg:#0E1116; --surface:#171B22; --surface-2:#1F242D; --rule:#2A313C;
+    --fg:#F2F4F7; --dim:#9AA4B2; --faint:#6B7480;
+    --accent:#F2A65A; --accent-ink:#1A1206; --mint:#5FD6A6; --coral:#F2708A;
+    --maxw:52rem;
+    --chrome:64rem; /* largura de topo/rodapé — igual em todas as páginas */
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{line-height:1.22; margin:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 1.25rem}
+  .placeholder{color:var(--accent); font-weight:600}
+
+  header{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85); backdrop-filter:blur(8px); border-bottom:1px solid var(--rule)}
+  nav{display:flex; align-items:center; gap:1rem; padding:.85rem 1.25rem; max-width:var(--chrome); margin:0 auto}
+  .brand{display:flex; align-items:center; gap:.55rem; font-weight:700}
+  .brand .mark{width:22px; height:22px; flex:0 0 auto}
+  nav .spacer{flex:1}
+  .langbar{display:flex; gap:.35rem}
+  .langbar button{font:inherit; font-size:.8rem; padding:.25rem .6rem; border-radius:999px;
+    border:1px solid var(--rule); background:transparent; color:var(--dim); cursor:pointer}
+  .langbar button[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600}
+  .btn{display:inline-flex; align-items:center; gap:.5rem; justify-content:center;
+    padding:.55rem .95rem; border-radius:11px; font-weight:600; font-size:.9rem;
+    border:1px solid var(--rule); color:var(--fg); background:var(--surface-2)}
+  .btn.primary{background:var(--accent); color:var(--accent-ink); border-color:var(--accent)}
+  .btn.small{padding:.4rem .8rem; font-size:.82rem}
+
+  main{padding:2.5rem 0 1rem}
+  .kicker{color:var(--faint); font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; margin-bottom:.5rem}
+  h1{font-size:2rem; letter-spacing:-.01em}
+  .lead{font-size:1.1rem; color:var(--dim); margin:1.25rem 0}
+  .tldr{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1.15rem 1.25rem; margin:1.5rem 0 2.25rem}
+  .tldr strong{color:var(--fg)}
+
+  section{padding:2rem 0; border-top:1px solid var(--rule); margin-top:1.5rem}
+  section h2{font-size:1.35rem; margin-bottom:.5rem; display:flex; align-items:center; gap:.65rem}
+  section h2 .n{
+    flex:0 0 auto; width:1.9rem; height:1.9rem; border-radius:999px; background:var(--accent);
+    color:var(--accent-ink); font-size:.95rem; font-weight:800; display:grid; place-items:center;
+  }
+  p{margin:.7rem 0}
+  ul{margin:.7rem 0; padding-left:1.2rem}
+  li{margin:.35rem 0}
+
+  .shots{display:flex; flex-wrap:wrap; gap:1.25rem; margin:1.25rem 0}
+  .shots figure{margin:0; flex:0 1 220px}
+  .shots img{width:100%; display:block; border-radius:14px; border:1px solid var(--rule); background:var(--surface)}
+  .shots figcaption{margin-top:.55rem; font-size:.82rem; color:var(--dim); text-align:center}
+
+  .note{background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:1rem 1.15rem; font-size:.92rem; color:var(--dim)}
+  .note strong{color:var(--fg)}
+
+  .cta{background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:1.5rem; text-align:center; margin-top:2rem}
+  .cta .btn{margin:.3rem}
+
+  footer{padding:2.5rem 0 3rem; border-top:1px solid var(--rule); color:var(--faint); font-size:.85rem; margin-top:2rem}
+  footer .wrap{max-width:var(--chrome); display:flex; flex-wrap:wrap; gap:1rem 1.5rem; align-items:center}
+  footer a{color:var(--dim)}
+
+  /* ---------- motion & vida ---------- */
+  .btn,.langbar button,.shots figure{
+    transition:transform .18s cubic-bezier(.2,.7,.2,1), background-color .2s ease,
+               border-color .2s ease, box-shadow .25s ease, color .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0) scale(.985)}
+  .btn.primary:hover{box-shadow:0 12px 30px -10px rgba(242,166,90,.55)}
+  .langbar button:hover{color:var(--fg); border-color:var(--faint)}
+  .shots figure:hover{transform:translateY(-3px)}
+  .shots figure:hover img{border-color:#3a4350}
+
+  header{transition:box-shadow .3s ease, background-color .3s ease}
+  header.scrolled{box-shadow:0 12px 34px -14px rgba(0,0,0,.6)}
+
+  .to-top{
+    position:fixed; right:1rem; bottom:1rem; z-index:30;
+    width:2.75rem; height:2.75rem; border-radius:999px;
+    display:grid; place-items:center;
+    background:var(--surface-2); color:var(--fg);
+    border:1px solid var(--rule); cursor:pointer;
+    box-shadow:0 10px 28px -10px rgba(0,0,0,.55);
+    transition:opacity .25s ease, transform .18s ease,
+               background-color .2s ease, border-color .2s ease, color .2s ease;
+  }
+  .to-top:hover{background:var(--accent); color:var(--accent-ink); border-color:var(--accent); transform:translateY(-2px)}
+
+  @media (hover:hover) and (pointer:fine) and (prefers-reduced-motion: no-preference){
+    .cursor-glow{
+      position:fixed; inset:0; z-index:-1; pointer-events:none;
+      opacity:0; transition:opacity .5s ease;
+      background:radial-gradient(600px circle at var(--gx,50%) var(--gy,-20%),
+        rgba(242,166,90,.12), transparent 60%);
+    }
+    body.cursor-active .cursor-glow{opacity:1}
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0; transform:translateY(22px);
+      transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+    .reveal.in{opacity:1; transform:none}
+  }
+
+  [hidden]{display:none !important}
+  @media (max-width:640px){
+    h1{font-size:1.6rem}
+    .shots figure{flex-basis:150px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="brand" href="./index.html">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/>
+        <circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M20 10.2a11 11 0 0 1 0 19.6 11 11 0 0 1 0-19.6Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </a>
+    <span class="spacer"></span>
+    <div class="langbar" role="group" aria-label="Idioma / Language">
+      <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <a class="btn small primary" href="#baixar" data-i18n="nav.cta">Baixar</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <p class="kicker" data-i18n="kicker">Guia</p>
+  <h1 data-i18n="h1">Como usar o Nosso</h1>
+
+  <p class="lead" data-i18n="lead">
+    Do zero ao primeiro acerto de contas em 10 passos — com prints reais do app, tela por
+    tela. Sem conectar banco, sem os dois criarem conta.
+  </p>
+
+  <div class="tldr" data-i18n="tldr">
+    <strong>Resumo:</strong> um dos dois cria o espaço do casal, o outro entra com um código
+    de 6 letras, e prontos: cada gasto lançado atualiza o painel dos dois na hora, com
+    "quem deve a quem" sempre visível.
+  </div>
+
+  <section>
+    <h2><span class="n">1</span><span data-i18n="s1.h">Criar o espaço do casal</span></h2>
+    <p data-i18n="s1.p">Na primeira vez que abre o app, escolha como você (e seu par) querem
+      aparecer — é opcional, dá pra mudar depois em Ajustes. Toque em
+      <strong>Criar espaço do casal</strong>: o app gera um código de 6 letras.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/02-onboarding-preenchido.png" loading="lazy" alt="Tela inicial com os nomes preenchidos">
+        <figcaption data-i18n="s1.cap1">Escolha como aparecer</figcaption>
+      </figure>
+      <figure>
+        <img src="./img/como-usar/03-codigo-espaco.png" loading="lazy" alt="Tela com o código do espaço do casal gerado">
+        <figcaption data-i18n="s1.cap2">Código de 6 letras gerado</figcaption>
+      </figure>
+    </div>
+    <p data-i18n="s1.p2">Manda esse código pro seu par — no aparelho dele, é só tocar em
+      <strong>Entrar com código</strong> na mesma tela inicial. Nenhum dos dois cria conta
+      com e-mail e senha.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span><span data-i18n="s2.h">Proteger seus dados</span></h2>
+    <p data-i18n="s2.p">Sem um e-mail de recuperação, os dados do espaço ficam só nos dois
+      aparelhos — dá pra pular esse passo e configurar depois em Ajustes → Recuperação.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/04-proteja-dados.png" loading="lazy" alt="Tela pedindo e-mail de recuperação, com opção Agora não">
+        <figcaption data-i18n="s2.cap">Recomendado, mas opcional</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span><span data-i18n="s3.h">A tela inicial</span></h2>
+    <p data-i18n="s3.p">O painel do mês: total gasto, quem deve a quem (recalculado a cada
+      lançamento) e os últimos gastos. O <strong>+</strong> no canto lança um gasto novo.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/05-home-vazio.png" loading="lazy" alt="Tela inicial vazia, sem gastos ainda">
+        <figcaption data-i18n="s3.cap">Painel do mês, vazio no início</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span><span data-i18n="s4.h">Lançar um gasto</span></h2>
+    <p data-i18n="s4.p">Valor, categoria (12 fixas — categorias personalizadas são Pro) e
+      quem pagou. Role pra escolher de quem é o gasto — meu / seu / nosso, com divisão exata
+      se quiser — e o tipo: <strong>à vista</strong> é grátis e sem limite; <strong>todo
+      mês</strong> (conta fixa) e <strong>parcelado</strong> já existem no app, atrás do
+      cadeado do plano Pro.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/06-novo-gasto-categoria.png" loading="lazy" alt="Tela Novo gasto com valor e categoria selecionada">
+        <figcaption data-i18n="s4.cap1">Valor e categoria</figcaption>
+      </figure>
+      <figure>
+        <img src="./img/como-usar/07-novo-gasto-tipo.png" loading="lazy" alt="Parte de baixo do formulário: tipo à vista, todo mês e parcelado">
+        <figcaption data-i18n="s4.cap2">Quem pagou, tipo e data</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span><span data-i18n="s5.h">Quem deve a quem, sempre em dia</span></h2>
+    <p data-i18n="s5.p">Cada gasto salvo atualiza o total e o saldo entre os dois na hora —
+      nos dois aparelhos, ao vivo.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/08-home-1-gasto.png" loading="lazy" alt="Tela inicial com um gasto lançado">
+        <figcaption data-i18n="s5.cap1">Depois do primeiro gasto</figcaption>
+      </figure>
+      <figure>
+        <img src="./img/como-usar/09-home-quem-deve.png" loading="lazy" alt="Tela inicial mostrando quem deve quanto pra quem">
+        <figcaption data-i18n="s5.cap2">Com dois gastos, saldo recalculado</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">6</span><span data-i18n="s6.h">Acertar as contas</span></h2>
+    <p data-i18n="s6.p">Toque em <strong>Acertar</strong>. O valor sugerido é o saldo total —
+      dá pra editar pra registrar um acerto parcial.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/10-acertar-contas.png" loading="lazy" alt="Tela Acertar contas com o botão Registrar acerto">
+        <figcaption data-i18n="s6.cap">Um toque pra registrar o acerto</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">7</span><span data-i18n="s7.h">Ver o histórico</span></h2>
+    <p data-i18n="s7.p">A lista completa do mês, com filtro por pessoa e por categoria, e
+      navegação entre meses.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/11-gastos-do-mes.png" loading="lazy" alt="Tela Gastos do mês com filtros por pessoa e categoria">
+        <figcaption data-i18n="s7.cap">Filtra por pessoa ou categoria</figcaption>
+      </figure>
+    </div>
+    <div class="note" data-i18n="s7.note">
+      No plano grátis dá pra ver o mês atual + os últimos meses de histórico. Ver tudo desde
+      o início é Pro.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">8</span><span data-i18n="s8.h">Ajustes e seus dados</span></h2>
+    <p data-i18n="s8.p">Idioma, tema, status da sincronização com seu par e o e-mail de
+      recuperação. Mais pra baixo: contas fixas, categorias, resumo semanal, e a seção
+      Dados.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/12-ajustes-idioma.png" loading="lazy" alt="Tela de Ajustes: idioma, tema e sincronização">
+        <figcaption data-i18n="s8.cap1">Idioma, tema e sincronização</figcaption>
+      </figure>
+      <figure>
+        <img src="./img/como-usar/13-ajustes-dados.png" loading="lazy" alt="Tela de Ajustes: exportar CSV, relatório PDF e o link para o Nosso Pro">
+        <figcaption data-i18n="s8.cap2">Seus dados e o Nosso Pro</figcaption>
+      </figure>
+    </div>
+    <div class="note" data-i18n="s8.note">
+      <strong>Exportar tudo (CSV)</strong> é sempre grátis e completo — isso nunca vira gancho
+      de plano pago. O <strong>Relatório (PDF)</strong> — por categoria, mês a mês, com saldo
+      consolidado por pessoa — é Pro.
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">9</span><span data-i18n="s9.h">Nosso Pro</span></h2>
+    <p data-i18n="s9.p">Contas fixas, compras parceladas, histórico completo, projeção dos
+      próximos meses, categorias e resumo personalizados, relatório em PDF e temas. O que
+      você já criou continua funcionando normalmente — o cadeado só vale pra criar coisa
+      nova.</p>
+    <div class="shots">
+      <figure>
+        <img src="./img/como-usar/14-nosso-pro.png" loading="lazy" alt="Tela Nosso Pro listando as funções do plano">
+        <figcaption data-i18n="s9.cap">A lista completa, dentro do app</figcaption>
+      </figure>
+      <figure>
+        <img src="./img/como-usar/15-contas-fixas.png" loading="lazy" alt="Tela Contas fixas vazia">
+        <figcaption data-i18n="s9.cap2">Contas fixas — aluguel, internet, streaming</figcaption>
+      </figure>
+    </div>
+    <div class="note" data-i18n="s9.note">
+      Preço e em quais aparelhos a compra já funciona mudam toda semana nessa fase do beta —
+      se estiver testando e esbarrar no cadeado, é só chamar quem te convidou.
+    </div>
+  </section>
+
+  <div class="cta" id="baixar">
+    <h2 data-i18n="cta.h" style="border:none; padding:0; margin-bottom:.4rem; display:block">Experimente o Nosso</h2>
+    <p data-i18n="cta.p" style="color:var(--dim); margin-top:0">Grátis. Dois minutos pra configurar. Nenhum banco, nenhum cartão.</p>
+    <a class="btn primary" href="https://testflight.apple.com/join/sgEUgqCh">iPhone (TestFlight)</a>
+    <a class="btn" href="https://forms.gle/WneSjKLfFfagiTfRA">Android (beta)</a>
+    <p data-i18n="beta.note" style="color:var(--dim); font-size:.85rem; margin-top:.8rem">No Android, o formulário só entra você na lista de espera — o link de instalação chega depois por e-mail.</p>
+    <p style="margin-top:.8rem"><a href="./index.html" data-i18n="cta.back">← Voltar para a página inicial</a></p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="15" cy="20" r="11" fill="#3E6F63"/><circle cx="25" cy="20" r="11" fill="#8A4E5C"/>
+        <path d="M20 10.2a11 11 0 0 1 0 19.6 11 11 0 0 1 0-19.6Z" fill="#F2A65A"/>
+      </svg>
+      Nosso
+    </span>
+    <span class="spacer" style="flex:1"></span>
+    <a href="./privacidade.html" data-i18n="foot.privacy">Política de privacidade</a>
+    <a href="./excluir-dados.html" data-i18n="foot.delete">Exclusão de dados</a>
+    <a href="mailto:contato@appnosso.com" data-i18n="foot.contact">Contato</a>
+  </div>
+</footer>
+
+<button type="button" class="to-top" aria-label="Voltar ao topo" hidden>
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" fill="none"
+       stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script>
+(function(){
+  var EN = {
+    "nav.cta":"Get the app",
+    "kicker":"Guide",
+    "h1":"How to use Nosso",
+    "lead":"From zero to your first settle-up in 10 steps — with real screenshots of the app, screen by screen. No bank connection, no double sign-up.",
+    "tldr":"<strong>Summary:</strong> one person creates the couple's space, the other joins with a 6-letter code, and that's it: every expense logged updates both dashboards instantly, with \"who owes whom\" always visible.",
+    "s1.h":"Create the couple's space",
+    "s1.p":"The first time you open the app, choose how you (and your partner) want to appear — optional, changeable later in Settings. Tap <strong>Create couple's space</strong>: the app generates a 6-letter code.",
+    "s1.cap1":"Choose how to appear",
+    "s1.cap2":"6-letter code generated",
+    "s1.p2":"Send that code to your partner — on their phone, they just tap <strong>Join with code</strong> on the same start screen. Neither of you creates an account with email and password.",
+    "s2.h":"Protect your data",
+    "s2.p":"Without a recovery email, the space's data lives only on the two phones — you can skip this step and set it up later in Settings → Recovery.",
+    "s2.cap":"Recommended, but optional",
+    "s3.h":"The home screen",
+    "s3.p":"The month's dashboard: total spent, who owes whom (recalculated on every entry), and the latest expenses. The <strong>+</strong> in the corner logs a new expense.",
+    "s3.cap":"Month dashboard, empty at first",
+    "s4.h":"Log an expense",
+    "s4.p":"Amount, category (12 fixed ones — custom categories are Pro), and who paid. Scroll to choose whose expense it is — mine / yours / ours, with an exact split if you want — and the type: <strong>one-time</strong> is free with no limit; <strong>every month</strong> (recurring bill) and <strong>installments</strong> already exist in the app, behind the Pro plan's lock.",
+    "s4.cap1":"Amount and category",
+    "s4.cap2":"Who paid, type and date",
+    "s5.h":"Who owes whom, always up to date",
+    "s5.p":"Every saved expense updates the total and the balance between the two of you instantly — on both phones, live.",
+    "s5.cap1":"After the first expense",
+    "s5.cap2":"With two expenses, balance recalculated",
+    "s6.h":"Settle up",
+    "s6.p":"Tap <strong>Settle up</strong>. The suggested amount is the full balance — editable to register a partial settlement.",
+    "s6.cap":"One tap to register the settlement",
+    "s7.h":"See your history",
+    "s7.p":"The full list for the month, filterable by person and category, with navigation between months.",
+    "s7.cap":"Filter by person or category",
+    "s7.note":"On the free plan you can see the current month plus your recent history. Seeing everything since the start is Pro.",
+    "s8.h":"Settings and your data",
+    "s8.p":"Language, theme, your partner's sync status, and the recovery email. Further down: recurring bills, categories, weekly summary, and the Data section.",
+    "s8.cap1":"Language, theme and sync",
+    "s8.cap2":"Your data and Nosso Pro",
+    "s8.note":"<strong>Export everything (CSV)</strong> is always free and complete — that never becomes a paywall hook. The <strong>Report (PDF)</strong> — by category, month by month, with the balance consolidated per person — is Pro.",
+    "s9.h":"Nosso Pro",
+    "s9.p":"Recurring bills, installment purchases, full history, upcoming-months projection, custom categories and summaries, PDF reports, and themes. Anything you already created keeps working normally — the lock only applies to creating something new.",
+    "s9.cap":"The full list, right in the app",
+    "s9.cap2":"Recurring bills — rent, internet, streaming",
+    "s9.note":"Price and which devices can already buy it change weekly at this stage of the beta — if you're testing and hit the lock, just ask whoever invited you.",
+    "cta.h":"Try Nosso",
+    "cta.p":"Free. Two minutes to set up. No bank, no card.",
+    "beta.note":"On Android, the form just joins you to the waitlist — the install link comes later by email.",
+    "cta.back":"← Back to the home page",
+    "foot.privacy":"Privacy policy","foot.delete":"Data deletion","foot.contact":"Contact"
+  };
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var PT = {}; nodes.forEach(function(n){ PT[n.dataset.i18n] = n.innerHTML; });
+  var buttons = document.querySelectorAll('.langbar button');
+  function apply(lang){
+    var d = lang === 'en' ? EN : PT;
+    nodes.forEach(function(n){ var v = d[n.dataset.i18n]; if (v != null) n.innerHTML = v; });
+    document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
+    document.title = lang === 'en'
+      ? "How to use Nosso — step-by-step guide with screenshots"
+      : "Como usar o Nosso — guia passo a passo com prints";
+    buttons.forEach(function(b){ b.setAttribute('aria-pressed', String(b.dataset.lang === lang)); });
+    try { localStorage.setItem('nosso-lang', lang); } catch(e){}
+  }
+  var initial = 'pt';
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    if (q === 'en' || q === 'pt') initial = q;
+    else { var s = localStorage.getItem('nosso-lang');
+      if (s === 'en' || s === 'pt') initial = s; }
+  } catch(e){}
+  buttons.forEach(function(b){ b.addEventListener('click', function(){ apply(b.dataset.lang); }); });
+  if (initial === 'en') apply('en');
+})();
+</script>
+
+<script>
+/* motion: sombra na nav ao rolar, entradas ao aparecer, holofote seguindo o cursor */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  var header = document.querySelector('header');
+  var toTop = document.querySelector('.to-top');
+  var onScroll = function(){
+    var y = window.scrollY;
+    header.classList.toggle('scrolled', y > 8);
+    if (toTop) toTop.hidden = y < 500;
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  if (toTop) toTop.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+  });
+
+  if (reduce.matches || !('IntersectionObserver' in window)) return;
+
+  var sel = '.kicker, h1, .lead, .tldr, section h2, section p, section .shots, section .note, .cta';
+  var targets = [].slice.call(document.querySelectorAll(sel));
+  targets.forEach(function(el){
+    el.classList.add('reveal');
+    var sibs = el.parentElement
+      ? [].slice.call(el.parentElement.children).filter(function(c){ return c.classList.contains('reveal'); })
+      : [];
+    var i = sibs.indexOf(el);
+    if (i > 0) el.style.transitionDelay = Math.min(i * 0.06, 0.3) + 's';
+  });
+
+  var sweep = function(){
+    var remaining = 0;
+    targets.forEach(function(el){
+      if (el.classList.contains('in')) return;
+      if (el.getBoundingClientRect().top < window.innerHeight * 0.94) el.classList.add('in');
+      else remaining++;
+    });
+    if (!remaining) window.removeEventListener('scroll', sweep);
+  };
+  window.addEventListener('scroll', sweep, {passive:true});
+  sweep();
+
+  if (window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+    var glow = document.createElement('div');
+    glow.className = 'cursor-glow';
+    document.body.appendChild(glow);
+    window.addEventListener('pointermove', function(e){
+      document.body.classList.add('cursor-active');
+      document.body.style.setProperty('--gx', e.clientX + 'px');
+      document.body.style.setProperty('--gy', e.clientY + 'px');
+    }, {passive:true});
+    document.documentElement.addEventListener('mouseleave', function(){
+      document.body.classList.remove('cursor-active');
+    });
+  }
+})();
+</script>
+</body>
+</html>

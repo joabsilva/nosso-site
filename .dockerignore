@@ -1,5 +1,7 @@
-# Só o Caddyfile e o conteúdo (HTML + favicon) vão pro build context.
+# Só o Caddyfile e o conteúdo (HTML + favicon + imagens) vão pro build context.
 *
 !Caddyfile
 !*.html
 !favicon.svg
+!img/
+!img/**
