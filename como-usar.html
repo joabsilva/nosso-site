@@ -136,6 +136,16 @@
     h1{font-size:1.6rem}
     .shots figure{flex-basis:150px}
   }
+  /* selos oficiais das lojas (App Store / Google Play) — arquivos em img/, sem alteração */
+  .store-badges{display:flex; flex-wrap:wrap; gap:.75rem; justify-content:center; align-items:center}
+  .store-badge{display:inline-flex; align-items:center; line-height:0; border-radius:8px; transition:transform .15s ease, filter .15s ease}
+  .store-badge:hover{transform:translateY(-2px); filter:brightness(1.1)}
+  .store-badge img{display:block}
+  .store-badge .ap{height:40px; width:auto}
+  .store-badge .gp-pt{height:52px; width:auto}
+  .store-badge .gp-en{height:60px; width:auto; margin:0 -10px}
+  html:not([lang="en"]) .b-en{display:none}
+  html[lang="en"] .b-pt{display:none}
 </style>
 </head>
 <body>
@@ -418,8 +428,10 @@
   <div class="cta" id="baixar">
     <h2 data-i18n="cta.h" style="border:none; padding:0; margin-bottom:.4rem; display:block">Experimente o Nosso</h2>
     <p data-i18n="cta.p" style="color:var(--dim); margin-top:0">Grátis. Dois minutos pra configurar. Nenhum banco, nenhum cartão.</p>
-    <a class="btn primary" href="https://apps.apple.com/br/app/nosso-finan%C3%A7as-do-casal/id6807449768">App Store (iPhone)</a>
-    <a class="btn" href="https://play.google.com/store/apps/details?id=com.nosso.app">Google Play (Android)</a>
+    <div class="store-badges">
+      <a class="store-badge" href="https://apps.apple.com/br/app/nosso-finan%C3%A7as-do-casal/id6807449768"><img class="ap b-pt" src="img/badge-app-store-pt.svg" width="120" height="40" alt="Baixar na App Store"><img class="ap b-en" src="img/badge-app-store-en.svg" width="120" height="40" alt="Download on the App Store"></a>
+      <a class="store-badge" href="https://play.google.com/store/apps/details?id=com.nosso.app"><img class="gp-pt b-pt" src="img/badge-google-play-pt.png" width="134" height="52" alt="Disponível no Google Play"><img class="gp-en b-en" src="img/badge-google-play-en.png" width="155" height="60" alt="Get it on Google Play"></a>
+    </div>
     <p style="margin-top:.8rem"><a href="./index.html" data-i18n="cta.back">← Voltar para a página inicial</a></p>
   </div>
 </main>
