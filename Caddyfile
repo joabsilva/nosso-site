@@ -32,6 +32,19 @@ appnosso.com {
 	}
 }
 
+# Outros projetos no mesmo servidor. Cada um sobe o próprio container na rede
+# Docker "edge" (declarada no compose.yaml) e este Caddy só faz o HTTPS e o
+# encaminhamento. Ficam aqui no git para não se perderem a cada rebuild.
+rifou.appnosso.com {
+	reverse_proxy rifou-web:3000
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+conferirbolao.com.br {
+	reverse_proxy bolao-web:80
+	header Strict-Transport-Security "max-age=31536000"
+}
+
 # OPCIONAL — redireciona www.appnosso.com -> appnosso.com.
 # Habilite só DEPOIS de criar o registro DNS de "www" apontando pro servidor,
 # senão o Caddy não consegue emitir o certificado e trava a emissão.

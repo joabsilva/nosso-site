@@ -21,6 +21,15 @@ services:
       # e você pode bater no limite semanal do Let's Encrypt.
       - caddy_data:/data
       - caddy_config:/config
+    networks:
+      - default
+      # Rede compartilhada com rifou-web e bolao-web (ver Caddyfile). Sem ela
+      # declarada aqui, todo rebuild tira o Caddy da rede e esses sites dão 502.
+      - edge
+
+networks:
+  edge:
+    external: true
 
 volumes:
   caddy_data:
