@@ -45,6 +45,10 @@ conferirbolao.com.br {
 	header Strict-Transport-Security "max-age=31536000"
 }
 
+www.conferirbolao.com.br {
+	redir https://conferirbolao.com.br{uri} permanent
+}
+
 # OPCIONAL — redireciona www.appnosso.com -> appnosso.com.
 # Habilite só DEPOIS de criar o registro DNS de "www" apontando pro servidor,
 # senão o Caddy não consegue emitir o certificado e trava a emissão.
