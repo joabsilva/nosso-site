@@ -49,6 +49,17 @@ www.conferirbolao.com.br {
 	redir https://conferirbolao.com.br{uri} permanent
 }
 
+# Histórias da Navegação (repo joabsilva/site-navegacao): container navegacao-web na rede edge.
+# Os mapas não passam por aqui: ficam no Cloudflare R2 (mapas.historiasdanavegacao.com.br).
+historiasdanavegacao.com.br {
+	reverse_proxy navegacao-web:80
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+www.historiasdanavegacao.com.br, historiasdanavegacao.com, www.historiasdanavegacao.com {
+	redir https://historiasdanavegacao.com.br{uri} permanent
+}
+
 # OPCIONAL — redireciona www.appnosso.com -> appnosso.com.
 # Habilite só DEPOIS de criar o registro DNS de "www" apontando pro servidor,
 # senão o Caddy não consegue emitir o certificado e trava a emissão.
