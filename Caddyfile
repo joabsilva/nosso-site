@@ -60,6 +60,16 @@ www.historiasdanavegacao.com.br, historiasdanavegacao.com, www.historiasdanavega
 	redir https://historiasdanavegacao.com.br{uri} permanent
 }
 
+# Jobs Consultoria (repo joabsilva/jobstecnologia): container jobstecnologia-web na rede edge.
+jobstecnologia.com {
+	reverse_proxy jobstecnologia-web:80
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+www.jobstecnologia.com {
+	redir https://jobstecnologia.com{uri} permanent
+}
+
 # OPCIONAL — redireciona www.appnosso.com -> appnosso.com.
 # Habilite só DEPOIS de criar o registro DNS de "www" apontando pro servidor,
 # senão o Caddy não consegue emitir o certificado e trava a emissão.
