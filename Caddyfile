@@ -70,6 +70,16 @@ www.jobstecnologia.com {
 	redir https://jobstecnologia.com{uri} permanent
 }
 
+# M4ALL Scans (repo joabsilva/m4allscans): container m4allscans-web na rede edge.
+m4allscans.com.br {
+	reverse_proxy m4allscans-web:80
+	header Strict-Transport-Security "max-age=31536000"
+}
+
+www.m4allscans.com.br {
+	redir https://m4allscans.com.br{uri} permanent
+}
+
 # OPCIONAL — redireciona www.appnosso.com -> appnosso.com.
 # Habilite só DEPOIS de criar o registro DNS de "www" apontando pro servidor,
 # senão o Caddy não consegue emitir o certificado e trava a emissão.
